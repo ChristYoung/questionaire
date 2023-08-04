@@ -1,5 +1,10 @@
 // https://juejin.cn/post/7226345144995758135
 module.exports = {
+    settings: {
+        react: {
+            version: 'detect',
+        },
+    },
     parserOptions: {
         ecmaVersion: 'latest', // 使用最新的 ECMAScript 版本
         sourceType: 'module', // 表示校验整个项目是以esm模块的语法来进行校验的
