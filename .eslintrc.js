@@ -17,13 +17,19 @@ module.exports = {
     parser: '@typescript-eslint/parser', // 使用 '@typescript-eslint/parser' 作为解析器，用于解析 TypeScript 代码
     extends: [
         'eslint:recommended', // 使用 ESLint 推荐的基本规则
-        'plugin:react/recommended', // 使用 react 插件推荐的规则
+        // 'plugin:react/recommended', // 使用 react 插件推荐的规则
         'plugin:@typescript-eslint/recommended', // 使用 @typescript-eslint 插件推荐的规则
         'plugin:prettier/recommended',
     ],
     plugins: ['react'], // 启用 react 插件
     rules: {
-        'prettier/prettier': ['error'], // 想在运行eslint时同时运行prettier，并且把prettier的错误作为eslint的错误来显示
+        // 想在运行eslint时同时运行prettier，并且把prettier的错误作为eslint的错误来显示
+        'prettier/prettier': [
+            'error',
+            {
+                endOfLine: 'auto', // 不让prettier检测文件每行结束的格式
+            },
+        ],
         'jsx-quotes': ['error', 'prefer-double'], // 在jsx的html元素中优先使用双引号
     },
 };
