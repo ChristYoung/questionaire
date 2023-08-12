@@ -1,14 +1,18 @@
 import { Outlet } from 'react-router-dom';
+import { Layout } from 'antd';
+import styles from './MainLayout.module.scss';
+
 export interface MainLayoutProps extends React.HTMLAttributes<HTMLDivElement> {}
 
+const { Header, Content, Footer } = Layout;
 export const MainLayout: React.FC<MainLayoutProps> = (props: MainLayoutProps) => {
     return (
-        <>
-            <div>header</div>
-            <div>
+        <Layout>
+            <Header className={styles.header}>header</Header>
+            <Content className={styles.main}>
                 <Outlet />
-            </div>
-            <div>footer</div>
-        </>
+            </Content>
+            <Footer className={styles.footer}>问卷 &copy; 2023</Footer>
+        </Layout>
     );
 };

@@ -1,4 +1,5 @@
 import { useNavigate, Link } from 'react-router-dom';
+import { Button } from 'antd';
 
 export interface HomeProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -11,10 +12,9 @@ export const Home: React.FC<HomeProps> = (props: HomeProps) => {
 
     return (
         <div>
-            <button type="button" onClick={goLogin}>
+            <Button onClick={goLogin} type="primary">
                 去登录
-            </button>
-
+            </Button>
             <Link to="/register">去注册</Link>
         </div>
     );
