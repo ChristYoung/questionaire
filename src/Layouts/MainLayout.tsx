@@ -8,7 +8,7 @@ const { Header, Content, Footer } = Layout;
 export const MainLayout: React.FC<MainLayoutProps> = (props: MainLayoutProps) => {
     return (
         <Layout>
-            <Header className={styles.header}>header</Header>
+            <Header className={styles.header}>header(8-5未看完)</Header>
             <Content className={styles.main}>
                 <Outlet />
             </Content>
