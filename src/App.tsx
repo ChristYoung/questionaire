@@ -1,12 +1,10 @@
 import React from 'react';
 import './App.css';
+import routerConfig from './routes';
+import { RouterProvider } from 'react-router-dom';
 
 function App() {
-    return (
-        <div className="App">
-            <h1>看到7-6了(没看完)</h1>
-        </div>
-    );
+    return <RouterProvider router={routerConfig}></RouterProvider>;
 }
 
 export default App;
