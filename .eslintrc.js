@@ -18,7 +18,7 @@ module.exports = {
     extends: [
         'eslint:recommended', // 使用 ESLint 推荐的基本规则
         // 'plugin:react/recommended', // 使用 react 插件推荐的规则
-        // 'plugin:@typescript-eslint/recommended', // 使用 @typescript-eslint 插件推荐的规则
+        'plugin:@typescript-eslint/recommended', // 使用 @typescript-eslint 插件推荐的规则
         'plugin:prettier/recommended',
     ],
     plugins: ['react'], // 启用 react 插件
