@@ -1,3 +1,5 @@
-export const QuestionLayout: React.FC<any> = (props: any) => {
+export interface QuestionLayoutProps extends React.HTMLAttributes<HTMLDivElement> {}
+
+export const QuestionLayout: React.FC<QuestionLayoutProps> = (props: QuestionLayoutProps) => {
     return <></>;
 };

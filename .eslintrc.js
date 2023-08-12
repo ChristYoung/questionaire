@@ -30,6 +30,12 @@ module.exports = {
                 endOfLine: 'auto', // 不让prettier检测文件每行结束的格式
             },
         ],
+        '@typescript-eslint/no-empty-interface': [
+            'error',
+            {
+                allowSingleExtends: true,
+            },
+        ],
         'jsx-quotes': ['error', 'prefer-double'], // 在jsx的html元素中优先使用双引号
     },
 };

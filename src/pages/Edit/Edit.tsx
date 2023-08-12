@@ -1,5 +1,5 @@
-import { FC } from 'react';
+export interface EditProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export const Edit: React.FC<any> = (props: any) => {
+export const Edit: React.FC<EditProps> = (props: EditProps) => {
     return <></>;
 };
