@@ -10,7 +10,7 @@ import { List } from '../pages/List/List';
 import { Trash } from '../pages/Trash/Trash';
 import { Edit } from '../pages/Edit/Edit';
 import { Stat } from '../pages/Stat/Stat';
-import { Error404 } from '../pages/error404';
+import { Error404 } from '../pages/Error404';
 
 const routerConfig = createBrowserRouter([
     {
