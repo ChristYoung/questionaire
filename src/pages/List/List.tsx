@@ -38,9 +38,12 @@ export const InputForm: React.FC<any> = (props: any) => {
         dispatch({ type: 'ADD_TODO', playload: newTodo });
         setText('');
     };
+    const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setText(e.target.value);
+    };
     return (
         <>
-            <input type="text" id="newTodo" onChange={e => setText(e.target.value)} />
+            <input type="text" id="newTodo" value={text} onChange={handleOnChange} />
             <button type="button" onClick={() => handleSubmit()}>
                 ADD #{state.length + 1}
             </button>
