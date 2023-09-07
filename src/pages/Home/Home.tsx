@@ -13,7 +13,9 @@ export const Home: React.FC<HomeProps> = (props: HomeProps) => {
     return (
         <div>
             <p>That's the home page!</p>
-            <Button onClick={goLogin} type="primary">
+            <Button
+                onClick={goLogin}
+                type="primary">
                 去登录
             </Button>
             <Link to="/register">去注册</Link>

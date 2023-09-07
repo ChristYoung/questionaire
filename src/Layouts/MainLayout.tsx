@@ -5,7 +5,9 @@ import styles from './MainLayout.module.scss';
 export interface MainLayoutProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const { Header, Content, Footer } = Layout;
-export const MainLayout: React.FC<MainLayoutProps> = (props: MainLayoutProps) => {
+export const MainLayout: React.FC<MainLayoutProps> = (
+    props: MainLayoutProps,
+) => {
     return (
         <Layout>
             <Header className={styles.header}>header</Header>

@@ -12,7 +12,10 @@ export const userSlice = createSlice({
     initialState: INIT_STATE,
     reducers: {
         // 登录
-        loginReducer: (_state: UserStateType, action: PayloadAction<UserStateType>) => {
+        loginReducer: (
+            _state: UserStateType,
+            action: PayloadAction<UserStateType>,
+        ) => {
             return action.payload;
         },
         logoutReducer: () => INIT_STATE,

@@ -12,7 +12,15 @@ export const QTitle: React.FC<QTitleProps> = (props: QTitleProps) => {
     const { text, level, isCenter, style } = props;
     const getFontSize = (level: 1 | 2 | 3 | 4 | 5) => 32 - level * 4;
     return (
-        <Title className="__QTitle" level={level} style={{ textAlign: isCenter ? 'center' : 'start', marginBottom: '0', fontSize: getFontSize(level), ...style }}>
+        <Title
+            className="__QTitle"
+            level={level}
+            style={{
+                textAlign: isCenter ? 'center' : 'start',
+                marginBottom: '0',
+                fontSize: getFontSize(level),
+                ...style,
+            }}>
             {text}
         </Title>
     );

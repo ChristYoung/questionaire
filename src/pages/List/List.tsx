@@ -1,4 +1,10 @@
-import { useReducer, Reducer, useState, createContext, useContext } from 'react';
+import {
+    useReducer,
+    Reducer,
+    useState,
+    createContext,
+    useContext,
+} from 'react';
 import { reducer, initialState, TodoType, ActionType } from './List.store';
 import { nanoid } from 'nanoid';
 
@@ -8,7 +14,10 @@ const TodoContext = createContext({
 });
 
 export const List: React.FC<any> = (props: any) => {
-    const [state, dispatch] = useReducer<Reducer<TodoType[], ActionType>>(reducer, initialState);
+    const [state, dispatch] = useReducer<Reducer<TodoType[], ActionType>>(
+        reducer,
+        initialState,
+    );
     return (
         <TodoContext.Provider value={{ state, dispatch }}>
             <InputForm></InputForm>
@@ -18,7 +27,11 @@ export const List: React.FC<any> = (props: any) => {
                         {s.title}
                         {s._id}
                     </span>
-                    <button type="button" onClick={() => dispatch({ type: 'REMOVE_TODO', playload: s })}>
+                    <button
+                        type="button"
+                        onClick={() =>
+                            dispatch({ type: 'REMOVE_TODO', playload: s })
+                        }>
                         x
                     </button>
                 </div>
@@ -43,8 +56,15 @@ export const InputForm: React.FC<any> = (props: any) => {
     };
     return (
         <>
-            <input type="text" id="newTodo" value={text} onChange={handleOnChange} />
-            <button type="button" onClick={() => handleSubmit()}>
+            <input
+                type="text"
+                id="newTodo"
+                value={text}
+                onChange={handleOnChange}
+            />
+            <button
+                type="button"
+                onClick={() => handleSubmit()}>
                 ADD #{state.length + 1}
             </button>
         </>
