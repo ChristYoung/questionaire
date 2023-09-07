@@ -6,7 +6,6 @@ import { QuestionLayout } from '../Layouts/QuestionLayout';
 import { Home } from '../pages/Home/Home';
 import { Login } from '../pages/Login/Login';
 import { Register } from '../pages/Register/Register';
-import { List } from '../pages/List/List';
 import { Trash } from '../pages/Trash/Trash';
 import { Edit } from '../pages/Edit/Edit';
 import { Stat } from '../pages/Stat/Stat';
@@ -23,10 +22,7 @@ const routerConfig = createBrowserRouter([
             {
                 path: 'manage',
                 element: <ManageLayout />,
-                children: [
-                    { path: 'list', element: <List /> },
-                    { path: 'trash', element: <Trash /> },
-                ],
+                children: [{ path: 'trash', element: <Trash /> }],
             },
             { path: '*', element: <Error404 /> },
         ],
