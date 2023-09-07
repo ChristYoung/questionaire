@@ -36,6 +36,7 @@ module.exports = {
                 allowSingleExtends: true,
             },
         ],
+        'max-len': ['error', { code: 180 }],
         '@typescript-eslint/no-empty-function': ['off'], // 0表示不校验
         'jsx-quotes': ['error', 'prefer-double'], // 在jsx的html元素中优先使用双引号
     },

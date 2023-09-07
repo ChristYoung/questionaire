@@ -11,7 +11,9 @@ export const Edit: React.FC<EditProps> = (props: EditProps) => {
                 <div className={styles.content}>
                     <div className={styles.left}>left</div>
                     <div className={styles.main}>
-                        <div className={styles['canvas_wrapper']}></div>
+                        <div className={styles['canvas_wrapper']}>
+                            <div style={{ height: '900px' }}>测试滚动</div>
+                        </div>
                     </div>
                     <div className={styles.right}>right</div>
                 </div>
