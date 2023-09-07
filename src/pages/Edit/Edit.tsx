@@ -1,5 +1,6 @@
 // http://localhost:3000/questionaire/edit/5
 import styles from './Edit.module.scss';
+import { EditCanvas } from './EditCanvas';
 
 export interface EditProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -12,7 +13,7 @@ export const Edit: React.FC<EditProps> = (props: EditProps) => {
                     <div className={styles.left}>left</div>
                     <div className={styles.main}>
                         <div className={styles['canvas_wrapper']}>
-                            <div style={{ height: '900px' }}>测试滚动</div>
+                            <EditCanvas />
                         </div>
                     </div>
                     <div className={styles.right}>right</div>

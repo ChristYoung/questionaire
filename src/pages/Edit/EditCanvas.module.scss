@@ -1,0 +1,19 @@
+.__EditCanvas {
+  min-height: 100vh;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.component_wrapper {
+  margin: 12px;
+  border: 1px solid #fff;
+  padding: 12px;
+  border-radius: 3px;
+  &:hover {
+    border-color: #d9d9d9;
+  }
+}
+
+.ban {
+  pointer-events: none;
+}
