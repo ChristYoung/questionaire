@@ -7,7 +7,8 @@ import { Provider } from 'react-redux';
 import store from './store';
 import { worker } from './mocks/browser';
 
-if (process.env.USING_MOCK) {
+console.log('process.env.NODE_ENV', process.env.NODE_ENV);
+if (process.env.NODE_ENV === 'development') {
     worker.start();
 }
 
