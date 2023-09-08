@@ -1,5 +1,5 @@
 {
-    "name": "questionaire",
+    "name": "questionnaire",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
@@ -12,6 +12,7 @@
         "@types/node": "^16.18.39",
         "ahooks": "^3.7.8",
         "antd": "^5.8.3",
+        "axios": "^1.5.0",
         "nanoid": "^4.0.2",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
@@ -62,8 +63,12 @@
         "eslint-plugin-promise": "^6.1.1",
         "eslint-plugin-react": "^7.33.1",
         "husky": "^8.0.3",
+        "msw": "^1.3.0",
         "prettier": "^3.0.1",
         "sass": "^1.64.2",
         "typescript": "^5.1.6"
+    },
+    "msw": {
+        "workerDirectory": "public"
     }
 }

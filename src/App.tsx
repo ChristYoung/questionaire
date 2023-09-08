@@ -1,4 +1,3 @@
-import React from 'react';
 import './App.css';
 import routerConfig from './routes';
 import { RouterProvider } from 'react-router-dom';

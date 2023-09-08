@@ -5,6 +5,11 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import store from './store';
+import { worker } from './mocks/browser';
+
+if (process.env.USING_MOCK) {
+    worker.start();
+}
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement,
