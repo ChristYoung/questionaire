@@ -1,8 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import { MainLayout } from '../Layouts/MainLayout';
-import { ManageLayout } from '../Layouts/ManageLayout';
-import { QuestionLayout } from '../Layouts/QuestionLayout';
+import { MainLayout } from '../layouts/MainLayout';
+import { ManageLayout } from '../layouts/ManageLayout';
+import { QuestionLayout } from '../layouts/QuestionLayout';
 import { Home } from '../pages/Home/Home';
 import { Login } from '../pages/Login/Login';
 import { Register } from '../pages/Register/Register';
@@ -27,7 +27,7 @@ const routerConfig = createBrowserRouter([
         ],
     },
     {
-        path: 'questionaire',
+        path: 'questionnaire',
         element: <QuestionLayout />,
         children: [{ path: 'edit/:id', element: <Edit /> }],
     },

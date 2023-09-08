@@ -1,4 +1,4 @@
-// http://localhost:3000/questionaire/edit/5
+// http://localhost:3000/questionnaire/edit/5
 import styles from './Edit.module.scss';
 import { EditCanvas } from './EditCanvas';
 import useRequest from '../../hook/useRequest';

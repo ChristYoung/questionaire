@@ -1,12 +1,13 @@
 export type ValueOf<T> = T[keyof T];
 
-export const QstTypeMapping = { QInput: '填空题', QTitle: '标题展示' } as const;
+export const QstTypeMapping = { INPUT: '填空题', TITLE: '标题展示' } as const;
+export type QstType = keyof typeof QstTypeMapping;
 
 export interface QuestionListItem {
     id: string;
     title?: string;
     description?: string;
-    qstType: keyof typeof QstTypeMapping;
+    qstType: QstType;
     props: string; // JSON string
 }
 
