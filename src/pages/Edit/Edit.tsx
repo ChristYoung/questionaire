@@ -2,21 +2,27 @@
 import styles from './Edit.module.scss';
 import { EditCanvas } from './EditCanvas';
 import useRequest from '../../hook/useRequest';
-import { questionnaireDetail } from '../../enum/api.enum';
+import { ApiEnum } from '../../enum/api.enum';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { QuestionnaireInfo } from '../../types';
+import { useDispatch } from 'react-redux';
+import { resetQstList } from '../../store/componentsReducer';
 
 export interface EditProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export const Edit: React.FC<EditProps> = (props: EditProps) => {
-    const [questionnaireInfo, setQuestionnaireInfo] = useState({});
+    const [questionnaireInfo, setQuestionnaireInfo] =
+        useState<QuestionnaireInfo>(null);
+
+    const dispatch = useDispatch();
+
     const [loading, setLoading] = useState(false);
     const { id } = useParams();
     const fetchData = async () => {
         setLoading(true);
         const _data = await useRequest<QuestionnaireInfo>({
-            url: `${questionnaireDetail}/${id}`,
+            url: `${ApiEnum.QuestionnaireDetail}/${id}`,
         });
         setQuestionnaireInfo(_data);
         setLoading(false);
@@ -25,6 +31,13 @@ export const Edit: React.FC<EditProps> = (props: EditProps) => {
     useEffect(() => {
         fetchData();
     }, [id]);
+
+    useEffect(() => {
+        if (questionnaireInfo) {
+            const { name, questions } = questionnaireInfo;
+            dispatch(resetQstList(questions));
+        }
+    }, [questionnaireInfo]);
 
     return (
         <div className={styles['__Edit']}>

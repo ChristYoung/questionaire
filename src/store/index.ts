@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import qstInfoReducer from './componentsReducer/index';
+import qstListReducer from './componentsReducer/index';
 
 export default configureStore({
     reducer: {
-        qstInfo: qstInfoReducer,
+        qstList: qstListReducer,
     },
 });
