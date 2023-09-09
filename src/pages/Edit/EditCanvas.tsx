@@ -2,7 +2,9 @@ import styles from './EditCanvas.module.scss';
 import { QInput } from '../../components/QuestionComponents/QInput';
 import { QTitle } from '../../components/QuestionComponents/QTitle';
 
-export interface EditCanvasProps extends React.HTMLAttributes<HTMLDivElement> {}
+export interface EditCanvasProps extends React.HTMLAttributes<HTMLDivElement> {
+    loading?: boolean; // 是否加载中
+}
 
 export const EditCanvas: React.FC<EditCanvasProps> = () => {
     return (

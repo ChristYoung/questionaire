@@ -4,20 +4,21 @@ import { EditCanvas } from './EditCanvas';
 import useRequest from '../../hook/useRequest';
 import { questionnaireDetail } from '../../enum/api.enum';
 import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 export interface EditProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export const Edit: React.FC<EditProps> = (props: EditProps) => {
+    const { id } = useParams();
     const fetchData = async () => {
-        const response = await useRequest({
-            url: `${questionnaireDetail}/6`,
+        return await useRequest({
+            url: `${questionnaireDetail}/${id}`,
         });
-        console.log('response', response);
     };
 
     useEffect(() => {
         fetchData();
-    }, []);
+    }, [id]);
 
     return (
         <div className={styles['__Edit']}>
