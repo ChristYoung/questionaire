@@ -6,7 +6,7 @@ export interface EditCanvasProps extends React.HTMLAttributes<HTMLDivElement> {
     loading?: boolean; // 是否加载中
 }
 
-export const EditCanvas: React.FC<EditCanvasProps> = () => {
+export const EditCanvas: React.FC<EditCanvasProps> = ({ loading }) => {
     return (
         <div className={styles['__EditCanvas']}>
             <div className={styles['component_wrapper']}>
@@ -14,6 +14,7 @@ export const EditCanvas: React.FC<EditCanvasProps> = () => {
                     <QTitle></QTitle>
                 </div>
             </div>
+            <span>{JSON.stringify(loading)}</span>
             <div className={styles['component_wrapper']}>
                 <div className={styles.ban}>
                     <QInput></QInput>
