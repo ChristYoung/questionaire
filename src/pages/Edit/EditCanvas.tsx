@@ -1,8 +1,7 @@
 import styles from './EditCanvas.module.scss';
-import { QInput } from '../../components/QuestionComponents/QInput';
-import { QTitle } from '../../components/QuestionComponents/QTitle';
 import { Skeleton } from 'antd';
 import { useGetQstList } from '../../hook/useGetQstList';
+import { QstTypeMapping } from '../../enum/constant.enum';
 
 export interface EditCanvasProps extends React.HTMLAttributes<HTMLDivElement> {
     loading?: boolean; // 是否加载中
@@ -30,16 +29,19 @@ export const EditCanvas: React.FC<EditCanvasProps> = ({ loading }) => {
 
     return (
         <div className={styles['__EditCanvas']}>
-            <div className={styles['component_wrapper']}>
-                <div className={styles.ban}>
-                    <QTitle></QTitle>
-                </div>
-            </div>
-            <div className={styles['component_wrapper']}>
-                <div className={styles.ban}>
-                    <QInput></QInput>
-                </div>
-            </div>
+            {qstList.map(item => {
+                const Component = QstTypeMapping[item.qstType];
+                const { id, propsObj } = item;
+                return (
+                    <div
+                        className={styles['component_wrapper']}
+                        key={id}>
+                        <div className={styles.ban}>
+                            <Component {...propsObj}></Component>
+                        </div>
+                    </div>
+                );
+            })}
         </div>
     );
 };
