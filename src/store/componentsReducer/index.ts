@@ -12,7 +12,7 @@ export const qstListSlice = createSlice({
     reducers: {
         // 重置所有问卷详情
         resetQstList: (state, action: PayloadAction<QuestionListItem[]>) =>
-            action.payload,
+            action.payload.map(q => ({ ...q, propsObj: JSON.parse(q.props) })),
     },
 });
 

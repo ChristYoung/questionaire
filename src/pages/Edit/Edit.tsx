@@ -50,9 +50,7 @@ export const Edit: React.FC<EditProps> = (props: EditProps) => {
                             <EditCanvas loading={loading} />
                         </div>
                     </div>
-                    <div className={styles.right}>
-                        {JSON.stringify(questionnaireInfo)}
-                    </div>
+                    <div className={styles.right}></div>
                 </div>
             </div>
         </div>
