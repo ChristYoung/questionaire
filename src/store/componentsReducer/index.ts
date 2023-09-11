@@ -2,17 +2,35 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { QuestionListItem, QuestionnaireInfo } from '../../types';
 
-export type QstListState = Pick<QuestionnaireInfo, 'questions'>;
+export type QstListState = {
+    questions?: QuestionListItem[];
+    selectedId?: string;
+};
 
-export const INIT_QST_LIST: QuestionListItem[] = [];
+export const INIT_STATE: QstListState = {
+    selectedId: '',
+    questions: [],
+};
 
 export const qstListSlice = createSlice({
     name: 'qstList',
-    initialState: INIT_QST_LIST,
+    initialState: INIT_STATE,
     reducers: {
         // 重置所有问卷详情
-        resetQstList: (state, action: PayloadAction<QuestionListItem[]>) =>
-            action.payload.map(q => ({ ...q, propsObj: JSON.parse(q.props) })),
+        resetQstList: (
+            state: QstListState,
+            action: PayloadAction<QstListState>,
+        ) => {
+            const questions = action.payload.questions.map(q => ({
+                ...q,
+                propsObj: JSON.parse(q.props),
+            }));
+            return { questions };
+        },
+        changeSelectedId: (
+            state: QstListState,
+            action: PayloadAction<string>,
+        ) => {},
     },
 });
 

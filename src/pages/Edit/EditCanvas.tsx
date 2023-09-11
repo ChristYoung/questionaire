@@ -9,6 +9,7 @@ export interface EditCanvasProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export const EditCanvas: React.FC<EditCanvasProps> = ({ loading }) => {
     const qstList = useGetQstList();
+    console.log('qstList', qstList);
 
     if (loading) {
         return (
