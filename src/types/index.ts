@@ -9,6 +9,7 @@ export interface QuestionListItem {
     description?: string;
     qstType: QstType;
     props: string; // JSON string
+    propsObj?: any; // format JSON string
 }
 
 export interface QuestionnaireInfo {

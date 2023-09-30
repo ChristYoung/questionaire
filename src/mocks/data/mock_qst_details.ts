@@ -49,7 +49,7 @@ export const MOCK_QST_DETAIL: QuestionnaireInfo = {
             title: '问题1',
             qstType: 'TITLE',
             props: JSON.stringify({
-                text: '测试标题',
+                text: 'sdf的爽肤水',
                 level: 5,
                 isCenter: true,
             } as QTitleProps),
