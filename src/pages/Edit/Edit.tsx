@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { QuestionnaireInfo } from '../../types';
 import { useDispatch } from 'react-redux';
-import { resetQstList } from '../../store/componentsReducer';
+import { changeSelectedId, resetQstList } from '../../store/componentsReducer';
 
 export interface EditProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -45,7 +45,11 @@ export const Edit: React.FC<EditProps> = (props: EditProps) => {
             <div className={styles.content_wrapper}>
                 <div className={styles.content}>
                     <div className={styles.left}>left</div>
-                    <div className={styles.main}>
+                    <div
+                        className={styles.main}
+                        onClick={() => {
+                            dispatch(changeSelectedId(''));
+                        }}>
                         <div className={styles['canvas_wrapper']}>
                             <EditCanvas loading={loading} />
                         </div>

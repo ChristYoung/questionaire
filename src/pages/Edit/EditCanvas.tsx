@@ -13,7 +13,8 @@ export interface EditCanvasProps extends React.HTMLAttributes<HTMLDivElement> {
 export const EditCanvas: React.FC<EditCanvasProps> = ({ loading }) => {
     const { questions, selectedId } = useGetQstList();
     const dispatch = useDispatch();
-    const handleClick = (id: string) => {
+    const handleClick = (e: React.MouseEvent, id: string) => {
+        e.stopPropagation();
         if (selectedId !== id) {
             dispatch(changeSelectedId(id));
         }
@@ -48,7 +49,7 @@ export const EditCanvas: React.FC<EditCanvasProps> = ({ loading }) => {
                             [styles['selected']]: selectedId === id,
                         })}
                         key={id}
-                        onClick={() => handleClick(id)}>
+                        onClick={e => handleClick(e, id)}>
                         <div className={styles.ban}>
                             <Component {...propsObj}></Component>
                         </div>
