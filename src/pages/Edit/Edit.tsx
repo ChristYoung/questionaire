@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import { changeSelectedId, resetQstList } from '../../store/componentsReducer';
 import { LeftPanel } from './LeftPanel';
 import { RightPanel } from './RightPanel';
+import { EditHeader } from './EditHeader';
 
 export interface EditProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -43,7 +44,9 @@ export const Edit: React.FC<EditProps> = (props: EditProps) => {
 
     return (
         <div className={styles['__Edit']}>
-            {/* <div className="">Header</div> */}
+            <div className="">
+                <EditHeader></EditHeader>
+            </div>
             <div className={styles.content_wrapper}>
                 <div className={styles.content}>
                     <div className={styles.left}>

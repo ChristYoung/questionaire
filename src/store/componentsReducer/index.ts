@@ -66,7 +66,6 @@ export const qstListSlice = createSlice({
             } else {
                 return {
                     ...state,
-                    selectedId: action.payload.id,
                     questions: insertItemToArray<QuestionListItem>(
                         state.questions,
                         selectedIndex + 1,
