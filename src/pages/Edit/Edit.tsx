@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom';
 import { QuestionnaireInfo } from '../../types';
 import { useDispatch } from 'react-redux';
 import { changeSelectedId, resetQstList } from '../../store/componentsReducer';
+import { LeftPanel } from './LeftPanel';
 
 export interface EditProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -44,7 +45,9 @@ export const Edit: React.FC<EditProps> = (props: EditProps) => {
             {/* <div className="">Header</div> */}
             <div className={styles.content_wrapper}>
                 <div className={styles.content}>
-                    <div className={styles.left}>left</div>
+                    <div className={styles.left}>
+                        <LeftPanel></LeftPanel>
+                    </div>
                     <div
                         className={styles.main}
                         onClick={() => {
