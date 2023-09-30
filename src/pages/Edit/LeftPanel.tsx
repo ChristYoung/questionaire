@@ -28,10 +28,11 @@ export const LeftPanel: React.FC<LeftPanelProps> = (props: LeftPanelProps) => {
         },
     ];
     return (
-        <Tabs
-            items={tabItems}
-            defaultActiveKey="1_get_qst_libs"
-            className="__leftPanel"
-        />
+        <div className="__leftPanel">
+            <Tabs
+                items={tabItems}
+                defaultActiveKey="1_get_qst_libs"
+            />
+        </div>
     );
 };

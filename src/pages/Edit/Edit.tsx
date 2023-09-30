@@ -9,6 +9,7 @@ import { QuestionnaireInfo } from '../../types';
 import { useDispatch } from 'react-redux';
 import { changeSelectedId, resetQstList } from '../../store/componentsReducer';
 import { LeftPanel } from './LeftPanel';
+import { RightPanel } from './RightPanel';
 
 export interface EditProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -57,7 +58,9 @@ export const Edit: React.FC<EditProps> = (props: EditProps) => {
                             <EditCanvas loading={loading} />
                         </div>
                     </div>
-                    <div className={styles.right}></div>
+                    <div className={styles.right}>
+                        <RightPanel></RightPanel>
+                    </div>
                 </div>
             </div>
         </div>
