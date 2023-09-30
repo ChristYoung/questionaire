@@ -2,14 +2,22 @@ import styles from './EditCanvas.module.scss';
 import { Skeleton } from 'antd';
 import { useGetQstList } from '../../hook/useGetQstList';
 import { QstTypeMapping } from '../../enum/constant.enum';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeSelectedId } from '../../store/componentsReducer';
+import classNames from 'classnames';
 
 export interface EditCanvasProps extends React.HTMLAttributes<HTMLDivElement> {
     loading?: boolean; // 是否加载中
 }
 
 export const EditCanvas: React.FC<EditCanvasProps> = ({ loading }) => {
-    const qstList = useGetQstList();
-    console.log('qstList', qstList);
+    const { questions, selectedId } = useGetQstList();
+    const dispatch = useDispatch();
+    const handleClick = (id: string) => {
+        if (selectedId !== id) {
+            dispatch(changeSelectedId(id));
+        }
+    };
 
     if (loading) {
         return (
@@ -30,13 +38,17 @@ export const EditCanvas: React.FC<EditCanvasProps> = ({ loading }) => {
 
     return (
         <div className={styles['__EditCanvas']}>
-            {qstList.map(item => {
+            {questions.map(item => {
                 const Component = QstTypeMapping[item.qstType];
                 const { id, propsObj } = item;
                 return (
                     <div
-                        className={styles['component_wrapper']}
-                        key={id}>
+                        className={classNames({
+                            [styles['component_wrapper']]: true,
+                            [styles['selected']]: selectedId === id,
+                        })}
+                        key={id}
+                        onClick={() => handleClick(id)}>
                         <div className={styles.ban}>
                             <Component {...propsObj}></Component>
                         </div>

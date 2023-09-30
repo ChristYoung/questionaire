@@ -4,7 +4,7 @@ import { QuestionListItem, QuestionnaireInfo } from '../../types';
 
 export type QstListState = {
     questions?: QuestionListItem[];
-    selectedId?: string;
+    selectedId?: string; // 被点击选中的组件
 };
 
 export const INIT_STATE: QstListState = {
@@ -16,7 +16,7 @@ export const qstListSlice = createSlice({
     name: 'qstList',
     initialState: INIT_STATE,
     reducers: {
-        // 重置所有问卷详情
+        // 重置所有问卷问题组件列表
         resetQstList: (
             state: QstListState,
             action: PayloadAction<QstListState>,
@@ -25,14 +25,18 @@ export const qstListSlice = createSlice({
                 ...q,
                 propsObj: JSON.parse(q.props),
             }));
-            return { questions };
+            return { questions, selectedId: '' };
         },
+        // 修改被选中的组件id
         changeSelectedId: (
             state: QstListState,
             action: PayloadAction<string>,
-        ) => {},
+        ) => {
+            const selectedId = action.payload;
+            return { selectedId, questions: state.questions };
+        },
     },
 });
 
-export const { resetQstList } = qstListSlice.actions;
+export const { resetQstList, changeSelectedId } = qstListSlice.actions;
 export default qstListSlice.reducer;
