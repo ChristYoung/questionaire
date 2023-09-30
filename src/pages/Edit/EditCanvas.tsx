@@ -39,23 +39,25 @@ export const EditCanvas: React.FC<EditCanvasProps> = ({ loading }) => {
 
     return (
         <div className={styles['__EditCanvas']}>
-            {questions.map(item => {
-                const Component = QstTypeMapping[item.qstType];
-                const { id, propsObj } = item;
-                return (
-                    <div
-                        className={classNames({
-                            [styles['component_wrapper']]: true,
-                            [styles['selected']]: selectedId === id,
-                        })}
-                        key={id}
-                        onClick={e => handleClick(e, id)}>
-                        <div className={styles.ban}>
-                            <Component {...propsObj}></Component>
+            <div>adsadas:{JSON.stringify(questions)}</div>
+            {questions?.length > 0 &&
+                questions.map(item => {
+                    const Component = QstTypeMapping[item.qstType];
+                    const { id, propsObj } = item;
+                    return (
+                        <div
+                            className={classNames({
+                                [styles['component_wrapper']]: true,
+                                [styles['selected']]: selectedId === id,
+                            })}
+                            key={id}
+                            onClick={e => handleClick(e, id)}>
+                            <div className={styles.ban}>
+                                <Component {...propsObj}></Component>
+                            </div>
                         </div>
-                    </div>
-                );
-            })}
+                    );
+                })}
         </div>
     );
 };

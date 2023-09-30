@@ -5,11 +5,13 @@ import { insertItemToArray } from '../../utils';
 
 export type QstListState = {
     questions?: QuestionListItem[];
-    selectedId?: string; // 被点击选中的组件
+    selectedId?: string; // 被点击选中的组件id
+    selectedComponent?: QuestionListItem; // 被点击选中的组件
 };
 
 export const INIT_STATE: QstListState = {
     selectedId: '',
+    selectedComponent: undefined,
     questions: [],
 };
 
@@ -26,7 +28,7 @@ export const qstListSlice = createSlice({
                 ...q,
                 propsObj: JSON.parse(q.props),
             }));
-            return { questions, selectedId: '' };
+            return { ...state, questions, selectedId: '' };
         },
 
         // 修改被选中的组件id
@@ -35,7 +37,10 @@ export const qstListSlice = createSlice({
             action: PayloadAction<string>,
         ) => {
             const selectedId = action.payload;
-            return { selectedId, questions: state.questions };
+            const selectedComponent = state.questions.find(
+                c => c.id === selectedId,
+            );
+            return { ...state, selectedId, selectedComponent };
         },
 
         // 添加一个组件
@@ -64,8 +69,26 @@ export const qstListSlice = createSlice({
                 };
             }
         },
+
+        // 修改组件属性
+        changeQstProps: (
+            state: QstListState,
+            action: PayloadAction<{ id: string; newProps: any }>,
+        ) => {
+            const { newProps } = action.payload;
+            const selectedComponent = state.selectedComponent;
+            if (selectedComponent) {
+                selectedComponent.propsObj = {
+                    ...selectedComponent.propsObj,
+                    ...newProps,
+                };
+                selectedComponent.props = JSON.stringify(newProps);
+            }
+            return { ...state, selectedComponent };
+        },
     },
 });
 
-export const { resetQstList, changeSelectedId, addQst } = qstListSlice.actions;
+export const { resetQstList, changeSelectedId, addQst, changeQstProps } =
+    qstListSlice.actions;
 export default qstListSlice.reducer;

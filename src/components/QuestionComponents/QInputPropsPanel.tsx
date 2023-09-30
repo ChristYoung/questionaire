@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useForm } from 'antd/es/form/Form';
 
 export const QInputPropsPanel: React.FC<QInputProps> = (props: QInputProps) => {
-    const { title, placeholder } = props;
+    const { title, placeholder, onChange } = props;
     const [form] = useForm();
 
     useEffect(() => {
@@ -14,6 +14,9 @@ export const QInputPropsPanel: React.FC<QInputProps> = (props: QInputProps) => {
     return (
         <Form
             form={form}
+            onValuesChange={() => {
+                onChange && onChange(form.getFieldsValue());
+            }}
             className="__QInputPropsPanel"
             layout="vertical"
             initialValues={{ title, placeholder }}>

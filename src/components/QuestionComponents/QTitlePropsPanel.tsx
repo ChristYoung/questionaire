@@ -4,7 +4,7 @@ import { Form, Input, Checkbox, Select } from 'antd';
 import { useEffect } from 'react';
 
 export const QTitlePropsPanel: React.FC<QTitleProps> = (props: QTitleProps) => {
-    const { text, level, isCenter, style } = props;
+    const { text, level, isCenter, style, onChange } = props;
     const [form] = useForm();
 
     useEffect(() => {
@@ -14,6 +14,9 @@ export const QTitlePropsPanel: React.FC<QTitleProps> = (props: QTitleProps) => {
     return (
         <div className="__QTitlePropsPanel">
             <Form
+                onValuesChange={() => {
+                    onChange && onChange(form.getFieldsValue());
+                }}
                 form={form}
                 layout="vertical"
                 initialValues={{ text, level, isCenter }}>

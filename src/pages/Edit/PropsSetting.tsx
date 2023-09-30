@@ -1,13 +1,18 @@
 import { QstPropsPanelMapping } from '../../enum/constant.enum';
 import { useGetQstList } from '../../hook/useGetQstList';
+import { changeQstProps } from '../../store/componentsReducer/index';
+import { useDispatch } from 'react-redux';
 
-export interface PropsSettingProps
-    extends React.HTMLAttributes<HTMLDivElement> {}
-
-export const PropsSetting: React.FC<PropsSettingProps> = (
-    props: PropsSettingProps,
-) => {
+export const PropsSetting: React.FC = () => {
     const { selectedComponent } = useGetQstList();
+    const dispatch = useDispatch();
+    const changeProps = (newProps: any) => {
+        if (!selectedComponent) {
+            return;
+        }
+        dispatch(changeQstProps(newProps));
+    };
+
     if (!selectedComponent) {
         return <div style={{ textAlign: 'center' }}>未选中任何组件</div>;
     } else {
@@ -15,7 +20,8 @@ export const PropsSetting: React.FC<PropsSettingProps> = (
         return (
             <div className="__PropsSetting">
                 <ComponentConfig
-                    {...selectedComponent.propsObj}></ComponentConfig>
+                    {...selectedComponent.propsObj}
+                    onChange={changeProps}></ComponentConfig>
             </div>
         );
     }
