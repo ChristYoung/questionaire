@@ -1,5 +1,6 @@
 import { Tabs } from 'antd';
 import { FileTextOutlined, SettingOutlined } from '@ant-design/icons';
+import { PropsSetting } from './PropsSetting';
 
 export interface RightPanelProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -15,7 +16,7 @@ export const RightPanel: React.FC<RightPanelProps> = (
                     属性
                 </span>
             ),
-            children: <div>属性</div>,
+            children: <PropsSetting />,
         },
         {
             key: '2_get_layers',
@@ -33,7 +34,6 @@ export const RightPanel: React.FC<RightPanelProps> = (
             <Tabs
                 items={tabItems}
                 defaultActiveKey="1_get_qst_libs"
-                className="__leftPanel"
             />
         </div>
     );

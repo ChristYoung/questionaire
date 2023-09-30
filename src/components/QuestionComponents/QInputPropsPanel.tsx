@@ -25,7 +25,7 @@ export const QInputPropsPanel: React.FC<QInputProps> = (props: QInputProps) => {
             </Form.Item>
             <Form.Item
                 label="PlaceHolder"
-                name="title">
+                name="placeholder">
                 <Input />
             </Form.Item>
         </Form>

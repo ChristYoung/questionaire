@@ -1,10 +1,16 @@
 import { useSelector } from 'react-redux';
 import { QstListStateType } from '../store';
-import { QstListState } from '../store/componentsReducer';
+import { QuestionListItem } from '../types';
 
 export const useGetQstList = () => {
-    const qstList = useSelector<QstListStateType>(
-        state => state.qstList,
-    ) as QstListState;
-    return qstList;
+    const questions = useSelector<QstListStateType>(
+        state => state.qstList.questions,
+    ) as QuestionListItem[];
+
+    const selectedId = useSelector<QstListStateType>(
+        state => state.qstList.selectedId,
+    ) as string;
+
+    const selectedComponent = questions.find(qst => qst.id === selectedId);
+    return { questions, selectedComponent, selectedId };
 };

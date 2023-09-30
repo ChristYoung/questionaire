@@ -23,7 +23,7 @@ export const MOCK_QST_DETAIL: QuestionnaireInfo = {
             qstType: 'INPUT',
             props: JSON.stringify({
                 title: '千秋万代',
-                placeholder: '请输入用户名',
+                placeholder: '请输入...',
             } as QInputProps),
         },
         {
@@ -32,7 +32,7 @@ export const MOCK_QST_DETAIL: QuestionnaireInfo = {
             qstType: 'INPUT',
             props: JSON.stringify({
                 title: '而他结合',
-                placeholder: '请输入用户名',
+                placeholder: '请输入...',
             } as QInputProps),
         },
         {
@@ -41,7 +41,7 @@ export const MOCK_QST_DETAIL: QuestionnaireInfo = {
             qstType: 'INPUT',
             props: JSON.stringify({
                 title: '疯狂赶紧恢复光滑',
-                placeholder: '请输入用户名',
+                placeholder: '请输入...',
             } as QInputProps),
         },
         {

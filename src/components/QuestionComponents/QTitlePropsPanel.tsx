@@ -35,7 +35,6 @@ export const QTitlePropsPanel: React.FC<QTitleProps> = (props: QTitleProps) => {
                     />
                 </Form.Item>
                 <Form.Item
-                    label="层级"
                     name="isCenter"
                     valuePropName="checked">
                     <Checkbox checked>居中</Checkbox>
