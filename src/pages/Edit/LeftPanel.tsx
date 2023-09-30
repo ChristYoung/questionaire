@@ -1,5 +1,6 @@
 import { Tabs } from 'antd';
 import { AppstoreAddOutlined, BarsOutlined } from '@ant-design/icons';
+import { ComponentLibs } from './ComponentLibs';
 
 export interface LeftPanelProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -13,7 +14,7 @@ export const LeftPanel: React.FC<LeftPanelProps> = (props: LeftPanelProps) => {
                     组件库
                 </span>
             ),
-            children: <div>组件库</div>,
+            children: <ComponentLibs />,
         },
         {
             key: '2_get_layers',
