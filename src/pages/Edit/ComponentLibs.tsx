@@ -22,25 +22,26 @@ export const ComponentLibs: React.FC<ComponentLibsProps> = (
 
     return (
         <div className="__ComponentLibs">
-            {COMPONENT_GROUP.map((g, _index) => {
+            {COMPONENT_GROUP.map((g, gIndex) => {
                 return (
                     <div key={g.gId}>
                         <Title
                             level={3}
                             style={{
                                 fontSize: '16px',
-                                marginTop: _index === 0 ? '0' : '20px',
+                                marginTop: gIndex === 0 ? '0' : '20px',
                             }}>
                             {g.groupName}
                         </Title>
                         <div>
-                            {g.componentList.map((item, _index) => {
-                                const QstItemComponent = QstTypeMapping[item];
+                            {g.componentList.map((qstType, _index) => {
+                                const QstItemComponent =
+                                    QstTypeMapping[qstType];
                                 return (
                                     <div
-                                        key={_index}
+                                        key={`${qstType}_${_index}`}
                                         className={styles.wrapper}
-                                        onClick={e => handleClick(e, item)}>
+                                        onClick={e => handleClick(e, qstType)}>
                                         <div className={styles.component}>
                                             <QstItemComponent />
                                         </div>

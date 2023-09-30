@@ -5,12 +5,12 @@ export type QstType = keyof typeof QstTypeMapping;
 
 export interface QuestionListItem {
     id: string;
+    qid?: string; // from server
     qstType: QstType;
     title?: string;
     description?: string;
     props?: string; // JSON string
     propsObj?: any; // format JSON string
-    component?: any;
 }
 
 export interface QuestionnaireInfo {
