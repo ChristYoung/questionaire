@@ -7,10 +7,7 @@ export const PropsSetting: React.FC = () => {
     const { selectedComponent } = useGetQstList();
     const dispatch = useDispatch();
     const changeProps = (newProps: any) => {
-        if (!selectedComponent) {
-            return;
-        }
-        dispatch(changeQstProps(newProps));
+        dispatch(changeQstProps({ id: selectedComponent.id, newProps }));
     };
 
     if (!selectedComponent) {

@@ -2,6 +2,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { QuestionListItem, QuestionnaireInfo } from '../../types';
 import { insertItemToArray } from '../../utils';
+import produce from 'immer';
 
 export type QstListState = {
     questions?: QuestionListItem[];
@@ -28,7 +29,12 @@ export const qstListSlice = createSlice({
                 ...q,
                 propsObj: JSON.parse(q.props),
             }));
-            return { ...state, questions, selectedId: '' };
+            return {
+                ...state,
+                questions,
+                selectedId: '',
+                selectedComponent: undefined,
+            };
         },
 
         // 修改被选中的组件id
@@ -70,22 +76,24 @@ export const qstListSlice = createSlice({
             }
         },
 
-        // 修改组件属性
-        changeQstProps: (
-            state: QstListState,
-            action: PayloadAction<{ id: string; newProps: any }>,
-        ) => {
-            const { newProps } = action.payload;
-            const selectedComponent = state.selectedComponent;
-            if (selectedComponent) {
-                selectedComponent.propsObj = {
-                    ...selectedComponent.propsObj,
-                    ...newProps,
-                };
-                selectedComponent.props = JSON.stringify(newProps);
-            }
-            return { ...state, selectedComponent };
-        },
+        // 修改组件属性, 因为要精准修改某个组件的属性, 所以需要使用immer
+        changeQstProps: produce(
+            (
+                draft: QstListState,
+                action: PayloadAction<{ id: string; newProps: any }>,
+            ) => {
+                const { newProps, id } = action.payload;
+                const currentQst = draft.questions.find(q => q.id === id);
+                if (currentQst) {
+                    currentQst.propsObj = {
+                        ...currentQst.propsObj,
+                        ...newProps,
+                    };
+                    currentQst.props = JSON.stringify(currentQst.propsObj);
+                    draft.selectedComponent = currentQst;
+                }
+            },
+        ),
     },
 });
 

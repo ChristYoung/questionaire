@@ -4,7 +4,7 @@ import { Form, Input, Checkbox, Select } from 'antd';
 import { useEffect } from 'react';
 
 export const QTitlePropsPanel: React.FC<QTitleProps> = (props: QTitleProps) => {
-    const { text, level, isCenter, style, onChange } = props;
+    const { text, level, isCenter, style, onChange, id } = props;
     const [form] = useForm();
 
     useEffect(() => {

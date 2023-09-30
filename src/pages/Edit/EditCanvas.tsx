@@ -39,7 +39,6 @@ export const EditCanvas: React.FC<EditCanvasProps> = ({ loading }) => {
 
     return (
         <div className={styles['__EditCanvas']}>
-            <div>adsadas:{JSON.stringify(questions)}</div>
             {questions?.length > 0 &&
                 questions.map(item => {
                     const Component = QstTypeMapping[item.qstType];
