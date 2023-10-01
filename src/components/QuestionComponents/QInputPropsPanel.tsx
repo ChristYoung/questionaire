@@ -2,6 +2,7 @@ import { Form, Input } from 'antd';
 import { QInputProps } from './QInput';
 import { useEffect } from 'react';
 import { useForm } from 'antd/es/form/Form';
+import { QInputDefaultProp } from './DefaultProps';
 
 export const QInputPropsPanel: React.FC<QInputProps> = (props: QInputProps) => {
     const { title, placeholder, onChange } = props;
@@ -34,3 +35,5 @@ export const QInputPropsPanel: React.FC<QInputProps> = (props: QInputProps) => {
         </Form>
     );
 };
+
+QInputPropsPanel.defaultProps = QInputDefaultProp;

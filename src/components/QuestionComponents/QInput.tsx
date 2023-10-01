@@ -1,4 +1,5 @@
 import { Typography, Input } from 'antd';
+import { QInputDefaultProp } from './DefaultProps';
 
 const { Paragraph } = Typography;
 
@@ -19,7 +20,4 @@ export const QInput: React.FC<QInputProps> = (props: QInputProps) => {
     );
 };
 
-QInput.defaultProps = {
-    title: '输入框标题',
-    placeholder: '请输入',
-};
+QInput.defaultProps = QInputDefaultProp;

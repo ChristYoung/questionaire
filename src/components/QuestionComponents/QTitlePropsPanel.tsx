@@ -2,6 +2,7 @@ import { useForm } from 'antd/es/form/Form';
 import { QTitleProps } from './QTitle';
 import { Form, Input, Checkbox, Select } from 'antd';
 import { useEffect } from 'react';
+import { QTitleDefaultProps } from './DefaultProps';
 
 export const QTitlePropsPanel: React.FC<QTitleProps> = (props: QTitleProps) => {
     const { text, level, isCenter, style, onChange, id } = props;
@@ -34,6 +35,8 @@ export const QTitlePropsPanel: React.FC<QTitleProps> = (props: QTitleProps) => {
                             { value: 1, label: '一级标题' },
                             { value: 2, label: '二级标题' },
                             { value: 3, label: '三级标题' },
+                            { value: 4, label: '四级标题' },
+                            { value: 5, label: '五级标题' },
                         ]}
                     />
                 </Form.Item>
@@ -46,3 +49,5 @@ export const QTitlePropsPanel: React.FC<QTitleProps> = (props: QTitleProps) => {
         </div>
     );
 };
+
+QTitlePropsPanel.defaultProps = QTitleDefaultProps;

@@ -1,4 +1,5 @@
 import { Typography } from 'antd';
+import { QTitleDefaultProps } from './DefaultProps';
 
 export interface QTitleProps extends React.HTMLAttributes<HTMLDivElement> {
     text?: string;
@@ -26,8 +27,4 @@ export const QTitle: React.FC<QTitleProps> = (props: QTitleProps) => {
     );
 };
 
-QTitle.defaultProps = {
-    level: 1,
-    isCenter: false,
-    text: '一行标题',
-};
+QTitle.defaultProps = QTitleDefaultProps;
