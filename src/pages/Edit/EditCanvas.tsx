@@ -2,9 +2,10 @@ import styles from './EditCanvas.module.scss';
 import { Skeleton } from 'antd';
 import { useGetQstList } from '../../hook/useGetQstList';
 import { QstTypeMapping } from '../../enum/constant.enum';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { changeSelectedId } from '../../store/componentsReducer';
 import classNames from 'classnames';
+import { Empty } from 'antd';
 
 export interface EditCanvasProps extends React.HTMLAttributes<HTMLDivElement> {
     loading?: boolean; // 是否加载中
@@ -39,7 +40,7 @@ export const EditCanvas: React.FC<EditCanvasProps> = ({ loading }) => {
 
     return (
         <div className={styles['__EditCanvas']}>
-            {questions?.length > 0 &&
+            {questions?.length > 0 ? (
                 questions.map(item => {
                     const Component = QstTypeMapping[item.qstType];
                     const { id, propsObj } = item;
@@ -56,7 +57,12 @@ export const EditCanvas: React.FC<EditCanvasProps> = ({ loading }) => {
                             </div>
                         </div>
                     );
-                })}
+                })
+            ) : (
+                <Empty
+                    description="请先添加问题"
+                    style={{ marginTop: '30px' }}></Empty>
+            )}
         </div>
     );
 };

@@ -1,6 +1,6 @@
 // 存储组件列表的数据
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { QuestionListItem, QuestionnaireInfo } from '../../types';
+import { QuestionListItem } from '../../types';
 import { deleteItemFromArray, insertItemToArray } from '../../utils';
 import produce from 'immer';
 
@@ -77,15 +77,35 @@ export const qstListSlice = createSlice({
 
         // 删除选中的组件
         deleteSelectedQst: (state: QstListState) => {
-            const selectedId = state.selectedId;
             const selectedIndex = state.questions.findIndex(
-                s => s.id === selectedId,
+                s => s.id === state.selectedId,
             );
+
+            // 在删除之前计算, 将selectedId和selectedIndex设置为下一个问题
+            const nextSelectedIndex =
+                state.questions.length <= 1
+                    ? -1
+                    : selectedIndex + 1 === state.questions.length // 如果删除的是最后一个问题, 则将selectedId设置为上一个问题
+                    ? selectedIndex - 1
+                    : selectedIndex + 1;
+
+            // 删除问题
+            const newQuestions = deleteItemFromArray(
+                state.questions,
+                selectedIndex,
+            );
+
             return {
                 ...state,
-                questions: deleteItemFromArray(state.questions, selectedIndex),
-                selectedId: '',
-                selectedComponent: undefined,
+                questions: newQuestions,
+                selectedId:
+                    nextSelectedIndex >= 0
+                        ? state.questions[nextSelectedIndex].id
+                        : '',
+                selectedComponent:
+                    nextSelectedIndex >= 0
+                        ? state.questions[nextSelectedIndex]
+                        : undefined,
             };
         },
 
