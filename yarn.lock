@@ -2799,7 +2799,7 @@ ahooks-v3-count@^1.0.0:
 
 ahooks@^3.7.8:
   version "3.7.8"
-  resolved "https://registry.npmjs.org/ahooks/-/ahooks-3.7.8.tgz"
+  resolved "https://library.corp.liveramp.com/artifactory/api/npm/npm/ahooks/-/ahooks-3.7.8.tgz#3fa3c491cd153e884a32b0c4192fc72cf84c4332"
   integrity sha512-e/NMlQWoCjaUtncNFIZk3FG1ImSkV/JhScQSkTqnftakRwdfZWSw6zzoWSG9OMYqPNs2MguDYBUFFC6THelWXA==
   dependencies:
     "@babel/runtime" "^7.21.0"

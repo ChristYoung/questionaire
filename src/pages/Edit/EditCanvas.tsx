@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { changeSelectedId } from '../../store/componentsReducer';
 import classNames from 'classnames';
 import { Empty } from 'antd';
+import { useShortCutKeyPress } from '../../hook/useShortCutKeyPress';
 
 export interface EditCanvasProps extends React.HTMLAttributes<HTMLDivElement> {
     loading?: boolean; // 是否加载中
@@ -13,6 +14,7 @@ export interface EditCanvasProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export const EditCanvas: React.FC<EditCanvasProps> = ({ loading }) => {
     const { questions, selectedId } = useGetQstList();
+    useShortCutKeyPress(); // 绑定快捷键
     const dispatch = useDispatch();
     const visibleQuestions = questions?.filter(q => !q.propsObj.isHidden);
     const handleClick = (e: React.MouseEvent, id: string) => {
