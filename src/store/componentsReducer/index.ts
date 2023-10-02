@@ -1,7 +1,7 @@
 // 存储组件列表的数据
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { QuestionListItem, QuestionnaireInfo } from '../../types';
-import { insertItemToArray } from '../../utils';
+import { deleteItemFromArray, insertItemToArray } from '../../utils';
 import produce from 'immer';
 
 export type QstListState = {
@@ -75,6 +75,20 @@ export const qstListSlice = createSlice({
             }
         },
 
+        // 删除选中的组件
+        deleteSelectedQst: (state: QstListState) => {
+            const selectedId = state.selectedId;
+            const selectedIndex = state.questions.findIndex(
+                s => s.id === selectedId,
+            );
+            return {
+                ...state,
+                questions: deleteItemFromArray(state.questions, selectedIndex),
+                selectedId: '',
+                selectedComponent: undefined,
+            };
+        },
+
         // 修改组件属性, 因为要精准修改某个组件的属性, 所以需要使用immer
         changeQstProps: produce(
             (
@@ -96,6 +110,11 @@ export const qstListSlice = createSlice({
     },
 });
 
-export const { resetQstList, changeSelectedId, addQst, changeQstProps } =
-    qstListSlice.actions;
+export const {
+    resetQstList,
+    changeSelectedId,
+    addQst,
+    changeQstProps,
+    deleteSelectedQst,
+} = qstListSlice.actions;
 export default qstListSlice.reducer;

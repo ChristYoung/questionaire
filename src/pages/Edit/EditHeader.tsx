@@ -2,6 +2,7 @@ import styles from './EditHeader.module.scss';
 import { Button, Typography, Space } from 'antd';
 import { LeftOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
+import { ToolBar } from './ToolBar';
 
 export interface EditHeaderProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -29,7 +30,9 @@ export const EditHeader: React.FC<EditHeaderProps> = (
                         </Title>
                     </Space>
                 </div>
-                <div className={styles.main}>ds</div>
+                <div className={styles.main}>
+                    <ToolBar></ToolBar>
+                </div>
                 <div className={styles.right}>
                     <Space>
                         <Button type="primary">保存</Button>
