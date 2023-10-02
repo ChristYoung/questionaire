@@ -5,6 +5,8 @@ import { MOCK_QST_DETAIL } from './data/mock_qst_details';
 import { getRandomInt } from '../utils/index'
 
 const DELAY_TIME_RANDOM = [ 1000, 1200, 3000, 200, 500, 300 ];
+// const DELAY_TIME_RANDOM = [ 200, 300 ];
+
 
 export const handlers = [
     // 根据id获取问卷中的问题列表

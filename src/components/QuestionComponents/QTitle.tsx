@@ -5,6 +5,7 @@ export interface QTitleProps extends React.HTMLAttributes<HTMLDivElement> {
     text?: string;
     level?: 1 | 2 | 3 | 4 | 5;
     isCenter?: boolean;
+    isHidden?: boolean;
 }
 
 const { Title } = Typography;

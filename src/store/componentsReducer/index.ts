@@ -1,7 +1,7 @@
 // 存储组件列表的数据
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { QuestionListItem } from '../../types';
-import { deleteItemFromArray, insertItemToArray } from '../../utils';
+import { deleteItemFromArray, insertItemToArray, moveNext } from '../../utils';
 import produce from 'immer';
 
 export type QstListState = {
@@ -82,12 +82,7 @@ export const qstListSlice = createSlice({
             );
 
             // 在删除之前计算, 将selectedId和selectedIndex设置为下一个问题
-            const nextSelectedIndex =
-                state.questions.length <= 1
-                    ? -1
-                    : selectedIndex + 1 === state.questions.length // 如果删除的是最后一个问题, 则将selectedId设置为上一个问题
-                    ? selectedIndex - 1
-                    : selectedIndex + 1;
+            const nextSelectedIndex = moveNext(state.questions, selectedIndex);
 
             // 删除问题
             const newQuestions = deleteItemFromArray(
@@ -113,7 +108,7 @@ export const qstListSlice = createSlice({
         changeQstProps: produce(
             (
                 draft: QstListState,
-                action: PayloadAction<{ id: string; newProps: any }>,
+                action: PayloadAction<{ id: string; newProps: object }>,
             ) => {
                 const { newProps, id } = action.payload;
                 const currentQst = draft.questions.find(q => q.id === id);
@@ -127,6 +122,39 @@ export const qstListSlice = createSlice({
                 }
             },
         ),
+
+        // 隐藏一个组件, 本质上也是修改组件的属性, 但是因为要额外处理nextSelectedIndex, 单独拿出来做一个reducer
+        hiddenQst: produce(
+            (
+                draft: QstListState,
+                action: PayloadAction<{ isHidden: boolean; id: string }>,
+            ) => {
+                const { id, isHidden } = action.payload;
+                const currentQst = draft.questions.find(q => q.id === id);
+                const currentQstIndex = draft.questions.findIndex(
+                    s => s.id === draft.selectedId,
+                );
+
+                // 在隐藏之前计算, 将selectedId和selectedIndex设置为下一个问题
+                const nextSelectedIndex = moveNext(
+                    draft.questions,
+                    currentQstIndex,
+                );
+                draft.selectedComponent =
+                    nextSelectedIndex >= 0
+                        ? draft.questions[nextSelectedIndex]
+                        : undefined;
+                draft.selectedId =
+                    nextSelectedIndex >= 0
+                        ? draft.questions[nextSelectedIndex].id
+                        : '';
+                currentQst.propsObj = {
+                    ...currentQst.propsObj,
+                    isHidden,
+                };
+                currentQst.props = JSON.stringify(currentQst.propsObj);
+            },
+        ),
     },
 });
 
@@ -136,5 +164,6 @@ export const {
     addQst,
     changeQstProps,
     deleteSelectedQst,
+    hiddenQst,
 } = qstListSlice.actions;
 export default qstListSlice.reducer;

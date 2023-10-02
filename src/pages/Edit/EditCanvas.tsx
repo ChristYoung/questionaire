@@ -14,6 +14,7 @@ export interface EditCanvasProps extends React.HTMLAttributes<HTMLDivElement> {
 export const EditCanvas: React.FC<EditCanvasProps> = ({ loading }) => {
     const { questions, selectedId } = useGetQstList();
     const dispatch = useDispatch();
+    const visibleQuestions = questions?.filter(q => !q.propsObj.isHidden);
     const handleClick = (e: React.MouseEvent, id: string) => {
         e.stopPropagation();
         if (selectedId !== id) {
@@ -40,8 +41,8 @@ export const EditCanvas: React.FC<EditCanvasProps> = ({ loading }) => {
 
     return (
         <div className={styles['__EditCanvas']}>
-            {questions?.length > 0 ? (
-                questions.map(item => {
+            {visibleQuestions?.length > 0 ? (
+                visibleQuestions.map(item => {
                     const Component = QstTypeMapping[item.qstType];
                     const { id, propsObj } = item;
                     return (

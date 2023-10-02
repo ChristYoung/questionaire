@@ -6,6 +6,7 @@ const { Paragraph } = Typography;
 export interface QInputProps extends React.HTMLAttributes<HTMLDivElement> {
     title?: string;
     placeholder?: string;
+    isHidden?: boolean;
 }
 
 export const QInput: React.FC<QInputProps> = (props: QInputProps) => {
