@@ -142,6 +142,8 @@ export const qstListSlice = createSlice({
                 currentQst.props = JSON.stringify(currentQst.propsObj);
             },
         ),
+
+        // TODO: 考虑新增一个复制action, 这个action中会调用addQst这个action, 考虑引入redux-saga.
     },
 });
 
