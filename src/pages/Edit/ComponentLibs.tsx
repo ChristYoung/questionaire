@@ -4,7 +4,7 @@ import styles from './ComponentLibs.module.scss';
 import { QstType } from '../../types';
 import { useDispatch } from 'react-redux';
 import { COMPONENT_GROUP, QstTypeMapping } from '../../enum/constant.enum';
-import { addQst } from '../../store/componentsReducer';
+import { addQst, changeSelectedId } from '../../store/componentsReducer';
 
 const { Title } = Typography;
 
@@ -17,7 +17,9 @@ export const ComponentLibs: React.FC<ComponentLibsProps> = (
     const dispatch = useDispatch();
     const handleClick = (e: React.MouseEvent, qstType: QstType) => {
         e.stopPropagation();
-        dispatch(addQst({ id: nanoid(36), qstType }));
+        const newId = nanoid(36);
+        dispatch(addQst({ id: newId, qstType, propsObj: { isHidden: false } }));
+        dispatch(changeSelectedId(newId));
     };
 
     return (

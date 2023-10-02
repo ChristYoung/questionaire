@@ -1,19 +1,25 @@
 import { Button, Space, Tooltip } from 'antd';
-import { DeleteOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 import {
-    changeQstProps,
+    DeleteOutlined,
+    EyeInvisibleOutlined,
+    CopyOutlined,
+} from '@ant-design/icons';
+import {
+    addQst,
     changeSelectedId,
     deleteSelectedQst,
     hiddenQst,
 } from '../../store/componentsReducer';
 import { useGetQstList } from '../../hook/useGetQstList';
 import { useDispatch } from 'react-redux';
+import cloneDeep from 'lodash.clonedeep';
+import { nanoid } from 'nanoid';
 
 export interface ToolBarProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export const ToolBar: React.FC<ToolBarProps> = (props: ToolBarProps) => {
     const dispatch = useDispatch();
-    const { questions, selectedId } = useGetQstList();
+    const { questions, selectedId, selectedComponent } = useGetQstList();
 
     return (
         <div className="__ToolBar">
@@ -38,11 +44,17 @@ export const ToolBar: React.FC<ToolBarProps> = (props: ToolBarProps) => {
                             <EyeInvisibleOutlined></EyeInvisibleOutlined>
                         }></Button>
                 </Tooltip>
-                <Tooltip title="删除">
+                <Tooltip title="复制">
                     <Button
                         shape="circle"
-                        disabled={questions?.length < 1}
-                        icon={<DeleteOutlined></DeleteOutlined>}></Button>
+                        onClick={() => {
+                            const newQst = cloneDeep(selectedComponent);
+                            newQst.id = nanoid(36);
+                            dispatch(addQst(newQst));
+                            dispatch(changeSelectedId(newQst.id));
+                        }}
+                        disabled={questions?.length < 1 || !selectedId}
+                        icon={<CopyOutlined></CopyOutlined>}></Button>
                 </Tooltip>
             </Space>
         </div>

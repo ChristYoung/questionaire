@@ -7,12 +7,14 @@ import produce from 'immer';
 export type QstListState = {
     questions?: QuestionListItem[];
     selectedId?: string; // 被点击选中的组件id
+    copiedComponent?: QuestionListItem; // 被复制的组件
     selectedComponent?: QuestionListItem; // 被点击选中的组件
 };
 
 export const INIT_STATE: QstListState = {
     selectedId: '',
     selectedComponent: undefined,
+    copiedComponent: undefined,
     questions: [],
 };
 
@@ -131,23 +133,8 @@ export const qstListSlice = createSlice({
             ) => {
                 const { id, isHidden } = action.payload;
                 const currentQst = draft.questions.find(q => q.id === id);
-                const currentQstIndex = draft.questions.findIndex(
-                    s => s.id === draft.selectedId,
-                );
-
-                // 在隐藏之前计算, 将selectedId和selectedIndex设置为下一个问题
-                const nextSelectedIndex = moveNext(
-                    draft.questions,
-                    currentQstIndex,
-                );
-                draft.selectedComponent =
-                    nextSelectedIndex >= 0
-                        ? draft.questions[nextSelectedIndex]
-                        : undefined;
-                draft.selectedId =
-                    nextSelectedIndex >= 0
-                        ? draft.questions[nextSelectedIndex].id
-                        : '';
+                draft.selectedComponent = undefined;
+                draft.selectedId = '';
                 currentQst.propsObj = {
                     ...currentQst.propsObj,
                     isHidden,
