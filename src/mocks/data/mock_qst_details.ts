@@ -1,4 +1,5 @@
 import { QInputProps } from '../../components/QuestionComponents/QInput';
+import { QParagraphProps } from '../../components/QuestionComponents/QParagraph';
 import { QTitleProps } from '../../components/QuestionComponents/QTitle';
 import { QuestionnaireInfo } from '../../types/index';
 import { nanoid } from 'nanoid';
@@ -53,6 +54,15 @@ export const MOCK_QST_DETAIL: QuestionnaireInfo = {
                 level: 5,
                 isCenter: true,
             } as QTitleProps),
+        },
+        {
+            id: nanoid(36),
+            title: '问题6',
+            qstType: 'PARAGRAPH',
+            props: JSON.stringify({
+                text: '段落',
+                isCenter: false,
+            } as QParagraphProps),
         },
     ],
 };

@@ -10,7 +10,6 @@ export type QstType = keyof typeof QstTypeMapping;
 export interface QstBaseProps {
     isHidden?: boolean;
     disabled?: boolean;
-    [x: string]: any;
 }
 
 export interface QuestionListItem {

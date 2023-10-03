@@ -5,7 +5,7 @@ import { useForm } from 'antd/es/form/Form';
 import { QInputDefaultProp } from './DefaultProps';
 
 export const QInputPropsPanel: React.FC<QInputProps> = (props: QInputProps) => {
-    const { title, placeholder, onChange } = props;
+    const { title, placeholder, onChange, disabled } = props;
     const [form] = useForm();
 
     useEffect(() => {
@@ -20,6 +20,7 @@ export const QInputPropsPanel: React.FC<QInputProps> = (props: QInputProps) => {
             }}
             className="__QInputPropsPanel"
             layout="vertical"
+            disabled={disabled}
             initialValues={{ title, placeholder }}>
             <Form.Item
                 label="标题"

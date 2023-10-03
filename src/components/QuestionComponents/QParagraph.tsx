@@ -15,7 +15,9 @@ export const QParagraph: React.FC<QParagraphProps> = (
     props: QParagraphProps,
 ) => {
     return (
-        <div className="__QParagraph">
+        <div
+            className="__QParagraph"
+            style={{ ...props.style }}>
             <Paragraph
                 style={{
                     textAlign: props.isCenter ? 'center' : 'start',

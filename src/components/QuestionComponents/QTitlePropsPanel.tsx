@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { QTitleDefaultProps } from './DefaultProps';
 
 export const QTitlePropsPanel: React.FC<QTitleProps> = (props: QTitleProps) => {
-    const { text, level, isCenter, style, onChange, id } = props;
+    const { text, level, isCenter, onChange, disabled } = props;
     const [form] = useForm();
 
     useEffect(() => {
@@ -20,6 +20,7 @@ export const QTitlePropsPanel: React.FC<QTitleProps> = (props: QTitleProps) => {
                 }}
                 form={form}
                 layout="vertical"
+                disabled={disabled}
                 initialValues={{ text, level, isCenter }}>
                 <Form.Item
                     label="标题内容"

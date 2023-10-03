@@ -34,7 +34,7 @@ export const QParagraphPanel: React.FC<QParagraphProps> = (
                 <Form.Item
                     name="isCenter"
                     valuePropName="checked">
-                    <Checkbox>居中</Checkbox>
+                    <Checkbox>居中{JSON.stringify(disabled)}</Checkbox>
                 </Form.Item>
             </Form>
         </div>

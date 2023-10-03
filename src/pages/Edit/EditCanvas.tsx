@@ -53,6 +53,14 @@ export const EditCanvas: React.FC<EditCanvasProps> = ({ loading }) => {
                                 [styles['component_wrapper']]: true,
                                 [styles['selected']]: selectedId === id,
                             })}
+                            style={{
+                                backgroundColor: item.propsObj.disabled
+                                    ? '#e5e5e5'
+                                    : '#fff',
+                                cursor: item.propsObj.disabled
+                                    ? 'not-allowed'
+                                    : 'pointer',
+                            }}
                             key={id}
                             onClick={e => handleClick(e, id)}>
                             <div className={styles.ban}>

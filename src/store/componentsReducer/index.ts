@@ -143,6 +143,23 @@ export const qstListSlice = createSlice({
             },
         ),
 
+        // 锁定或者解锁一个组件
+        lockOrUnLockQst: produce(
+            (
+                draft: QstListState,
+                action: PayloadAction<{ id: string; disabled: boolean }>,
+            ) => {
+                const { id, disabled } = action.payload;
+                const currentQst = draft.questions.find(q => q.id === id);
+                currentQst.propsObj = {
+                    ...currentQst.propsObj,
+                    disabled,
+                };
+                currentQst.props = JSON.stringify(currentQst.propsObj);
+                draft.selectedComponent.propsObj.disabled = disabled;
+            },
+        ),
+
         // TODO: 考虑新增一个复制action, 这个action中会调用addQst这个action, 考虑引入redux-saga.
 
         // 选中上一个组件
@@ -190,5 +207,6 @@ export const {
     hiddenQst,
     selectNextQst,
     selectPrevQst,
+    lockOrUnLockQst,
 } = qstListSlice.actions;
 export default qstListSlice.reducer;

@@ -12,9 +12,11 @@ export interface QInputProps
 }
 
 export const QInput: React.FC<QInputProps> = (props: QInputProps) => {
-    const { title, placeholder } = props;
+    const { title, placeholder, style } = props;
     return (
-        <div className="__QInput">
+        <div
+            className="__QInput"
+            style={{ ...style }}>
             <Paragraph strong>{title}</Paragraph>
             <div>
                 <Input placeholder={placeholder} />
