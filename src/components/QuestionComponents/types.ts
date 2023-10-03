@@ -2,6 +2,7 @@ export const QstTypeMapping = {
     INPUT: '填空题',
     TITLE: '标题展示',
     PARAGRAPH: '段落',
+    SINGLE_CHOICE: '单选题',
 } as const;
 export type QstType = keyof typeof QstTypeMapping;
 

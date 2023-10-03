@@ -1,4 +1,4 @@
-import { Radio } from 'antd';
+import { Radio, Typography, Space } from 'antd';
 import { OptItem, QstBaseProps } from './types';
 import { QSingleSelectDefaultProps } from './DefaultProps';
 
@@ -11,11 +11,23 @@ export interface QSingleSelectProps
     value?: string;
 }
 
+const { Paragraph } = Typography;
+
 export const QSingleSelect: React.FC<QSingleSelectProps> = (
     props: QSingleSelectProps,
 ) => {
+    const { title, direction, value, options } = props;
     return (
-        <div className="__QSingleSelect">QSingleSelect component works!</div>
+        <div className="__QSingleSelect">
+            <Paragraph>{title}</Paragraph>
+            <Radio.Group value={value}>
+                <Space direction={direction}>
+                    {options?.map(opt => (
+                        <Radio value={opt.value}>{opt.label}</Radio>
+                    ))}
+                </Space>
+            </Radio.Group>
+        </div>
     );
 };
 

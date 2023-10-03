@@ -8,12 +8,7 @@ import { addQst, changeSelectedId } from '../../store/componentsReducer';
 
 const { Title } = Typography;
 
-export interface ComponentLibsProps
-    extends React.HTMLAttributes<HTMLDivElement> {}
-
-export const ComponentLibs: React.FC<ComponentLibsProps> = (
-    props: ComponentLibsProps,
-) => {
+export const ComponentLibs: React.FC = () => {
     const dispatch = useDispatch();
     const handleClick = (e: React.MouseEvent, qstType: QstType) => {
         e.stopPropagation();

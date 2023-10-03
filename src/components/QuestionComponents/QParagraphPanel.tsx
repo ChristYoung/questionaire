@@ -41,4 +41,4 @@ export const QParagraphPanel: React.FC<QParagraphProps> = (
     );
 };
 
-QParagraphPanel.defaultProps = QParagraphDefaultProps;
+QParagraphPanel.defaultProps = { ...QParagraphDefaultProps };
