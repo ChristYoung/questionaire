@@ -4,15 +4,19 @@ import { QTitle } from '../components/QuestionComponents/QTitle';
 import { QTitlePropsPanel } from '../components/QuestionComponents/QTitlePropsPanel';
 import { QInputPropsPanel } from '../components/QuestionComponents/QInputPropsPanel';
 import { QstGroup, QstType } from '../types';
+import { QParagraph } from '../components/QuestionComponents/QParagraph';
+import { QParagraphPanel } from '../components/QuestionComponents/QParagraphPanel';
 
 export const QstTypeMapping: Record<QstType, React.FC<any>> = {
     INPUT: QInput,
     TITLE: QTitle,
+    PARAGRAPH: QParagraph,
 } as const;
 
 export const QstPropsPanelMapping: Record<QstType, React.FC<any>> = {
     INPUT: QInputPropsPanel,
     TITLE: QTitlePropsPanel,
+    PARAGRAPH: QParagraphPanel,
 } as const;
 
 export const COMPONENT_GROUP: QstGroup[] = [

@@ -7,6 +7,11 @@ export const QstTypeMapping = {
 } as const;
 export type QstType = keyof typeof QstTypeMapping;
 
+export interface QstBaseProps {
+    isHidden?: boolean;
+    [x: string]: any;
+}
+
 export interface QuestionListItem {
     id: string; // from fe.
     qid?: string; // from server
@@ -14,7 +19,7 @@ export interface QuestionListItem {
     title?: string;
     description?: string;
     props?: string; // JSON string
-    propsObj?: Record<string, unknown>; // format JSON string
+    propsObj?: QstBaseProps; // format JSON string
 }
 
 export interface QuestionnaireInfo {

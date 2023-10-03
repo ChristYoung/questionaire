@@ -11,3 +11,7 @@ export const QInputDefaultProp: QInputProps = {
     title: '输入框标题',
     placeholder: '请输入',
 };
+
+export const QParagraphDefaultProps = {
+    text: '一段文字',
+};

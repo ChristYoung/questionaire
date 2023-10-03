@@ -1,4 +1,8 @@
-export interface QParagraphProps extends React.HTMLAttributes<HTMLDivElement> {}
+import { QstBaseProps } from '../../types';
+
+export interface QParagraphProps
+    extends QstBaseProps,
+        React.HTMLAttributes<HTMLDivElement> {}
 
 export const QParagraph: React.FC<QParagraphProps> = (
     props: QParagraphProps,

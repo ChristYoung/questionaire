@@ -1,11 +1,13 @@
 import { Typography } from 'antd';
 import { QTitleDefaultProps } from './DefaultProps';
+import { QstBaseProps } from '../../types';
 
-export interface QTitleProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface QTitleProps
+    extends QstBaseProps,
+        React.HTMLAttributes<HTMLDivElement> {
     text?: string;
     level?: 1 | 2 | 3 | 4 | 5;
     isCenter?: boolean;
-    isHidden?: boolean;
 }
 
 const { Title } = Typography;

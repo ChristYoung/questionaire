@@ -56,7 +56,8 @@ export const EditCanvas: React.FC<EditCanvasProps> = ({ loading }) => {
                             key={id}
                             onClick={e => handleClick(e, id)}>
                             <div className={styles.ban}>
-                                <Component {...propsObj}></Component>
+                                <Component
+                                    {...(propsObj as typeof propsObj)}></Component>
                             </div>
                         </div>
                     );
