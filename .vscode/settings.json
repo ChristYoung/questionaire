@@ -10,5 +10,5 @@
     "immer",
     "uparrow"
   ],
-  "commentTranslate.hover.enabled": true,
+  "commentTranslate.hover.enabled": false,
 }

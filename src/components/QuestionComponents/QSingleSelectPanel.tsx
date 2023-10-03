@@ -3,7 +3,7 @@ import { useForm } from 'antd/es/form/Form';
 import { useEffect } from 'react';
 import { QSingleSelectDefaultProps } from './DefaultProps';
 import { QSingleSelectProps } from './QSingleSelect';
-import { PlusOutlined } from '@ant-design/icons';
+import { PlusOutlined, MinusCircleOutlined } from '@ant-design/icons';
 import { Required } from '../../enum/validator-rules.enum';
 
 export const QSingleSelectPanel: React.FC<QSingleSelectProps> = (
@@ -53,13 +53,19 @@ export const QSingleSelectPanel: React.FC<QSingleSelectProps> = (
                             <>
                                 {fields.map((item, _index) => {
                                     return (
-                                        <Space key={item.key}>
+                                        <Space
+                                            key={item.key}
+                                            align="baseline">
                                             <Form.Item
-                                                name={[item.name, 'label']}>
+                                                name={[item.name, 'label']}
+                                                rules={[
+                                                    Required(
+                                                        '',
+                                                        '请输入选项文字',
+                                                    ),
+                                                ]}>
                                                 <Input
-                                                    value={
-                                                        options?.[_index]?.label
-                                                    }
+                                                    placeholder="输入选项文字"
                                                     onChange={e => {
                                                         options?.[_index] &&
                                                             (options[
@@ -69,6 +75,13 @@ export const QSingleSelectPanel: React.FC<QSingleSelectProps> = (
                                                     }}
                                                 />
                                             </Form.Item>
+                                            {_index > 1 && (
+                                                <MinusCircleOutlined
+                                                    onClick={() =>
+                                                        remove(item.name)
+                                                    }
+                                                />
+                                            )}
                                         </Space>
                                     );
                                 })}
