@@ -30,4 +30,5 @@ export const QSingleSelectDefaultProps = {
         },
     ],
     direction: 'vertical',
+    value: '1',
 };

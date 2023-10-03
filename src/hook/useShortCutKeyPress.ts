@@ -27,13 +27,13 @@ export const useShortCutKeyPress = () => {
 
     // 快速上移和下移选中组件
     useKeyPress(['uparrow'], () => {
-        if (isActiveElementValid) {
+        if (isActiveElementValid()) {
             dispatch(selectPrevQst());
         }
     });
 
     useKeyPress(['downarrow'], () => {
-        if (isActiveElementValid) {
+        if (isActiveElementValid()) {
             dispatch(selectNextQst());
         }
     });

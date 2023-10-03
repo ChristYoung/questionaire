@@ -22,8 +22,12 @@ export const QSingleSelect: React.FC<QSingleSelectProps> = (
             <Paragraph>{title}</Paragraph>
             <Radio.Group value={value}>
                 <Space direction={direction}>
-                    {options?.map(opt => (
-                        <Radio value={opt.value}>{opt.label}</Radio>
+                    {options?.map((opt, _index) => (
+                        <Radio
+                            value={opt.value}
+                            key={_index}>
+                            {opt.label}
+                        </Radio>
                     ))}
                 </Space>
             </Radio.Group>
