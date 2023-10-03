@@ -1,7 +1,10 @@
 import { useKeyPress } from 'ahooks';
 import { useDispatch } from 'react-redux';
-import { deleteSelectedQst } from '../store/componentsReducer';
-import { useGetQstList } from './useGetQstList';
+import {
+    deleteSelectedQst,
+    selectNextQst,
+    selectPrevQst,
+} from '../store/componentsReducer';
 
 // 为了防止在右侧属性编辑框中输入时也触发快捷键, 需要判断是否在输入框中
 export const isActiveElementValid = () => {
@@ -19,6 +22,19 @@ export const useShortCutKeyPress = () => {
         }
     });
 
-    // 复制快捷键
+    // 复制快捷键, TODO: 考虑引入redux-saga, 在这里调用addQst这个action
     useKeyPress(['ctrl.v', 'command.v'], () => {});
+
+    // 快速上移和下移选中组件
+    useKeyPress(['uparrow'], () => {
+        if (isActiveElementValid) {
+            dispatch(selectPrevQst());
+        }
+    });
+
+    useKeyPress(['downarrow'], () => {
+        if (isActiveElementValid) {
+            dispatch(selectNextQst());
+        }
+    });
 };

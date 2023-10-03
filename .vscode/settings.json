@@ -6,6 +6,8 @@
     "antd",
     "Appstore",
     "clonedeep",
-    "immer"
+    "downarrow",
+    "immer",
+    "uparrow"
   ],
 }

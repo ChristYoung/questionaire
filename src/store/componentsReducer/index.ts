@@ -144,6 +144,40 @@ export const qstListSlice = createSlice({
         ),
 
         // TODO: 考虑新增一个复制action, 这个action中会调用addQst这个action, 考虑引入redux-saga.
+
+        // 选中上一个组件
+        selectPrevQst: (state: QstListState) => {
+            const selectedIndex = state.questions.findIndex(
+                q => q.id === state.selectedId,
+            );
+            const nextSelectedIndex = selectedIndex - 1;
+            if (nextSelectedIndex >= 0) {
+                return {
+                    ...state,
+                    selectedId: state.questions[nextSelectedIndex].id,
+                    selectedComponent: state.questions[nextSelectedIndex],
+                };
+            } else {
+                return state;
+            }
+        },
+
+        // 选中下一个组件
+        selectNextQst: (state: QstListState) => {
+            const selectedIndex = state.questions.findIndex(
+                q => q.id === state.selectedId,
+            );
+            const nextSelectedIndex = selectedIndex + 1;
+            if (nextSelectedIndex < state.questions.length) {
+                return {
+                    ...state,
+                    selectedId: state.questions[nextSelectedIndex].id,
+                    selectedComponent: state.questions[nextSelectedIndex],
+                };
+            } else {
+                return state;
+            }
+        },
     },
 });
 
@@ -154,5 +188,7 @@ export const {
     changeQstProps,
     deleteSelectedQst,
     hiddenQst,
+    selectNextQst,
+    selectPrevQst,
 } = qstListSlice.actions;
 export default qstListSlice.reducer;
