@@ -22,7 +22,7 @@ export const useShortCutKeyPress = () => {
         }
     });
 
-    // 复制快捷键, TODO: 考虑引入redux-saga, 在这里调用addQst这个action
+    // TODO: 考虑引入redux-saga, 在这里调用addQst这个action, 复制快捷键
     useKeyPress(['ctrl.v', 'command.v'], () => {});
 
     // 快速上移和下移选中组件
