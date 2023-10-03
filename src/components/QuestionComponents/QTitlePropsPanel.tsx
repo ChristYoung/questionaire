@@ -3,6 +3,7 @@ import { QTitleProps } from './QTitle';
 import { Form, Input, Checkbox, Select } from 'antd';
 import { useEffect } from 'react';
 import { QTitleDefaultProps } from './DefaultProps';
+import { Required } from '../../enum/validator-rules.enum';
 
 export const QTitlePropsPanel: React.FC<QTitleProps> = (props: QTitleProps) => {
     const { text, level, isCenter, onChange, disabled } = props;
@@ -25,7 +26,7 @@ export const QTitlePropsPanel: React.FC<QTitleProps> = (props: QTitleProps) => {
                 <Form.Item
                     label="标题内容"
                     name="text"
-                    rules={[{ required: true, message: '请输入标题内容' }]}>
+                    rules={[Required('标题')]}>
                     <Input />
                 </Form.Item>
                 <Form.Item

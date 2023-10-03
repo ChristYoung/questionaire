@@ -1,8 +1,10 @@
-import { Checkbox, Form, Input, Select } from 'antd';
-import { useEffect } from 'react';
+import { Button, Form, Input, Select, Space } from 'antd';
 import { useForm } from 'antd/es/form/Form';
+import { useEffect } from 'react';
 import { QSingleSelectDefaultProps } from './DefaultProps';
 import { QSingleSelectProps } from './QSingleSelect';
+import { PlusOutlined } from '@ant-design/icons';
+import { Required } from '../../enum/validator-rules.enum';
 
 export const QSingleSelectPanel: React.FC<QSingleSelectProps> = (
     props: QSingleSelectProps,
@@ -32,7 +34,7 @@ export const QSingleSelectPanel: React.FC<QSingleSelectProps> = (
                 <Form.Item
                     label="标题内容"
                     name="title"
-                    rules={[{ required: true, message: '请输入标题内容' }]}>
+                    rules={[Required('标题内容')]}>
                     <Input />
                 </Form.Item>
                 <Form.Item
@@ -44,6 +46,46 @@ export const QSingleSelectPanel: React.FC<QSingleSelectProps> = (
                             { value: 'vertical', label: '纵向' },
                             { value: 'horizontal', label: '横向' },
                         ]}></Select>
+                </Form.Item>
+                <Form.Item label="选项">
+                    <Form.List name="options">
+                        {(fields, { add, remove }) => (
+                            <>
+                                {fields.map((item, _index) => {
+                                    return (
+                                        <Space key={item.key}>
+                                            <Form.Item
+                                                name={[item.name, 'label']}>
+                                                <Input
+                                                    value={
+                                                        options?.[_index]?.label
+                                                    }
+                                                    onChange={e => {
+                                                        options?.[_index] &&
+                                                            (options[
+                                                                _index
+                                                            ].label =
+                                                                e.target.value);
+                                                    }}
+                                                />
+                                            </Form.Item>
+                                        </Space>
+                                    );
+                                })}
+                                <Form.Item>
+                                    <Button
+                                        type="link"
+                                        block
+                                        icon={<PlusOutlined />}
+                                        onClick={() =>
+                                            add({ label: '', value: '' })
+                                        }>
+                                        添加选项
+                                    </Button>
+                                </Form.Item>
+                            </>
+                        )}
+                    </Form.List>
                 </Form.Item>
                 <Form.Item
                     label="默认选择"

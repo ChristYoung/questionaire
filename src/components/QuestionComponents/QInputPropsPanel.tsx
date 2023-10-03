@@ -3,6 +3,7 @@ import { QInputProps } from './QInput';
 import { useEffect } from 'react';
 import { useForm } from 'antd/es/form/Form';
 import { QInputDefaultProp } from './DefaultProps';
+import { Required } from '../../enum/validator-rules.enum';
 
 export const QInputPropsPanel: React.FC<QInputProps> = (props: QInputProps) => {
     const { title, placeholder, onChange, disabled } = props;
@@ -25,7 +26,7 @@ export const QInputPropsPanel: React.FC<QInputProps> = (props: QInputProps) => {
             <Form.Item
                 label="标题"
                 name="title"
-                rules={[{ required: true, message: '请输入标题' }]}>
+                rules={[Required('标题')]}>
                 <Input />
             </Form.Item>
             <Form.Item

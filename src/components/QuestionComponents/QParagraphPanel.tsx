@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useForm } from 'antd/es/form/Form';
 import { QParagraphProps } from './QParagraph';
 import { QParagraphDefaultProps } from './DefaultProps';
+import { Required } from '../../enum/validator-rules.enum';
 
 const { TextArea } = Input;
 
@@ -28,7 +29,7 @@ export const QParagraphPanel: React.FC<QParagraphProps> = (
                 <Form.Item
                     label="段落内容"
                     name="text"
-                    rules={[{ required: true, message: '请输入段落内容' }]}>
+                    rules={[Required('段落内容')]}>
                     <TextArea />
                 </Form.Item>
                 <Form.Item

@@ -1,5 +1,6 @@
 import { Typography, Space, Form, Button, Checkbox, Input } from 'antd';
 import { UserAddOutlined } from '@ant-design/icons';
+import { Required } from '../../enum/validator-rules.enum';
 const { Title } = Typography;
 
 type FieldType = {
@@ -42,24 +43,14 @@ export const Register: React.FC<RegisterProps> = (props: RegisterProps) => {
                     <Form.Item<FieldType>
                         label="Username"
                         name="username"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input your username!',
-                            },
-                        ]}>
+                        rules={[Required('Username')]}>
                         <Input />
                     </Form.Item>
 
                     <Form.Item<FieldType>
                         label="Password"
                         name="password"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input your password!',
-                            },
-                        ]}>
+                        rules={[Required('Password')]}>
                         <Input.Password />
                     </Form.Item>
 
