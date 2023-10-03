@@ -1,4 +1,4 @@
-import { QstBaseProps } from '../../types';
+import { QstBaseProps } from './types';
 import { QParagraphDefaultProps } from './DefaultProps';
 import { Typography } from 'antd';
 

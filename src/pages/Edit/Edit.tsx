@@ -5,7 +5,7 @@ import useRequest from '../../hook/useRequest';
 import { ApiEnum } from '../../enum/api.enum';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { QuestionnaireInfo } from '../../types';
+import { QuestionnaireInfo } from '../../components/QuestionComponents/types';
 import { useDispatch } from 'react-redux';
 import { changeSelectedId, resetQstList } from '../../store/componentsReducer';
 import { LeftPanel } from './LeftPanel';

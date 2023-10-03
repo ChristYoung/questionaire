@@ -1,7 +1,7 @@
 import { QInputProps } from '../../components/QuestionComponents/QInput';
 import { QParagraphProps } from '../../components/QuestionComponents/QParagraph';
 import { QTitleProps } from '../../components/QuestionComponents/QTitle';
-import { QuestionnaireInfo } from '../../types/index';
+import { QuestionnaireInfo } from '../../components/QuestionComponents/types';
 import { nanoid } from 'nanoid';
 
 export const MOCK_QST_DETAIL: QuestionnaireInfo = {

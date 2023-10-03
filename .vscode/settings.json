@@ -10,4 +10,5 @@
     "immer",
     "uparrow"
   ],
+  "commentTranslate.hover.enabled": true,
 }

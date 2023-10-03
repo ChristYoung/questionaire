@@ -3,7 +3,7 @@ import { QInput } from '../components/QuestionComponents/QInput';
 import { QTitle } from '../components/QuestionComponents/QTitle';
 import { QTitlePropsPanel } from '../components/QuestionComponents/QTitlePropsPanel';
 import { QInputPropsPanel } from '../components/QuestionComponents/QInputPropsPanel';
-import { QstGroup, QstType } from '../types';
+import { QstGroup, QstType } from '../components/QuestionComponents/types';
 import { QParagraph } from '../components/QuestionComponents/QParagraph';
 import { QParagraphPanel } from '../components/QuestionComponents/QParagraphPanel';
 

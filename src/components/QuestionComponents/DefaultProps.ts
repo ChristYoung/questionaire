@@ -16,3 +16,18 @@ export const QParagraphDefaultProps = {
     text: '一段文字(可以换行)',
     isCenter: false,
 };
+
+export const QSingleSelectDefaultProps = {
+    title: '单选题',
+    options: [
+        {
+            label: '选项1',
+            value: '1',
+        },
+        {
+            label: '选项2',
+            value: '2',
+        },
+    ],
+    direction: 'vertical',
+};

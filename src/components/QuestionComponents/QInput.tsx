@@ -1,6 +1,6 @@
 import { Typography, Input } from 'antd';
 import { QInputDefaultProp } from './DefaultProps';
-import { QstBaseProps } from '../../types';
+import { QstBaseProps } from './types';
 
 const { Paragraph } = Typography;
 

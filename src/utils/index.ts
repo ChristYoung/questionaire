@@ -1,4 +1,4 @@
-import { QuestionListItem } from '../types';
+import { QuestionListItem } from '../components/QuestionComponents/types';
 
 // 获取[x, y]区间的随机整数.
 export function getRandomInt(start: number, end: number): number {

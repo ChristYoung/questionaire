@@ -1,6 +1,6 @@
 import { Typography } from 'antd';
 import { QTitleDefaultProps } from './DefaultProps';
-import { QstBaseProps } from '../../types';
+import { QstBaseProps } from './types';
 
 export interface QTitleProps
     extends QstBaseProps,

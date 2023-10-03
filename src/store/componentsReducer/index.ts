@@ -1,6 +1,6 @@
 // 存储组件列表的数据
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { QuestionListItem } from '../../types';
+import { QuestionListItem } from '../../components/QuestionComponents/types';
 import { deleteItemFromArray, insertItemToArray, moveNext } from '../../utils';
 import produce from 'immer';
 

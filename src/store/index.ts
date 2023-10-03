@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import qstListReducer, { QstListState } from './componentsReducer/index';
-import { QuestionListItem } from '../types';
+import { QuestionListItem } from '../components/QuestionComponents/types';
 
 export type QstListStateType = { qstList: QstListState };
 

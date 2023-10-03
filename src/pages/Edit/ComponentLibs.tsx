@@ -1,7 +1,7 @@
 import { nanoid } from '@reduxjs/toolkit';
 import { Typography } from 'antd';
 import styles from './ComponentLibs.module.scss';
-import { QstType } from '../../types';
+import { QstType } from '../../components/QuestionComponents/types';
 import { useDispatch } from 'react-redux';
 import { COMPONENT_GROUP, QstTypeMapping } from '../../enum/constant.enum';
 import { addQst, changeSelectedId } from '../../store/componentsReducer';
