@@ -17,16 +17,13 @@ import { useGetQstList } from '../../hook/useGetQstList';
 import { useDispatch } from 'react-redux';
 import cloneDeep from 'lodash.clonedeep';
 import { nanoid } from 'nanoid';
-import { useState } from 'react';
 
 export interface ToolBarProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export const ToolBar: React.FC<ToolBarProps> = (props: ToolBarProps) => {
     const dispatch = useDispatch();
     const { questions, selectedId, selectedComponent } = useGetQstList();
-    const [isLocked, setIsLocked] = useState(
-        selectedComponent?.propsObj?.disabled,
-    );
+    const isLocked = !!selectedComponent?.propsObj?.disabled;
 
     return (
         <div className="__ToolBar">
@@ -55,7 +52,6 @@ export const ToolBar: React.FC<ToolBarProps> = (props: ToolBarProps) => {
                     <Button
                         shape="circle"
                         onClick={() => {
-                            setIsLocked(!isLocked);
                             dispatch(
                                 lockOrUnLockQst({
                                     id: selectedId,

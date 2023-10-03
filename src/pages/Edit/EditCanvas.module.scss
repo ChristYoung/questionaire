@@ -21,3 +21,9 @@
 .ban {
     pointer-events: none;
 }
+
+.locked {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #e5e5e5;
+}
