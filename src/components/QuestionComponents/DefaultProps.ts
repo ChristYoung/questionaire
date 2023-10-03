@@ -2,7 +2,7 @@ import { QInputProps } from './QInput';
 import { QTitleProps } from './QTitle';
 
 export const QTitleDefaultProps: QTitleProps = {
-    level: 1,
+    level: 5,
     isCenter: false,
     text: '一行标题',
 };
@@ -13,5 +13,6 @@ export const QInputDefaultProp: QInputProps = {
 };
 
 export const QParagraphDefaultProps = {
-    text: '一段文字',
+    text: '一段文字(可以换行)',
+    isCenter: false,
 };

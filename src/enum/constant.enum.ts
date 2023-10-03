@@ -20,6 +20,14 @@ export const QstPropsPanelMapping: Record<QstType, React.FC<any>> = {
 } as const;
 
 export const COMPONENT_GROUP: QstGroup[] = [
-    { groupName: '文本显示', componentList: ['TITLE'], gId: nanoid(24) },
-    { groupName: '文本输入', componentList: ['INPUT'], gId: nanoid(24) },
+    {
+        groupName: '文本显示',
+        componentList: ['TITLE', 'PARAGRAPH'],
+        gId: nanoid(24),
+    },
+    {
+        groupName: '文本输入',
+        componentList: ['INPUT'],
+        gId: nanoid(24),
+    },
 ];
