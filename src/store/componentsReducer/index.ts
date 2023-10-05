@@ -18,6 +18,29 @@ export const INIT_STATE: QstListState = {
     questions: [],
 };
 
+export function addComponent(
+    state: QstListState,
+    newQuestion: QuestionListItem,
+): QstListState {
+    const selectedId = state.selectedId;
+    const selectedIndex = state.questions.findIndex(q => q.id === selectedId);
+    if (selectedIndex < 0) {
+        return {
+            ...state,
+            questions: [...state.questions, newQuestion],
+        };
+    } else {
+        return {
+            ...state,
+            questions: insertItemToArray<QuestionListItem>(
+                state.questions,
+                selectedIndex + 1,
+                newQuestion,
+            ),
+        };
+    }
+}
+
 export const qstListSlice = createSlice({
     name: 'qstList',
     initialState: INIT_STATE,
@@ -56,25 +79,7 @@ export const qstListSlice = createSlice({
             state: QstListState,
             action: PayloadAction<QuestionListItem>,
         ) => {
-            const selectedId = state.selectedId;
-            const selectedIndex = state.questions.findIndex(
-                q => q.id === selectedId,
-            );
-            if (selectedIndex < 0) {
-                return {
-                    ...state,
-                    questions: [...state.questions, action.payload],
-                };
-            } else {
-                return {
-                    ...state,
-                    questions: insertItemToArray<QuestionListItem>(
-                        state.questions,
-                        selectedIndex + 1,
-                        action.payload,
-                    ),
-                };
-            }
+            return addComponent(state, action.payload);
         },
 
         // 删除选中的组件
@@ -159,8 +164,6 @@ export const qstListSlice = createSlice({
                 draft.selectedComponent.propsObj.disabled = disabled;
             },
         ),
-
-        // TODO: 考虑新增一个复制action, 这个action中会调用addQst这个action, 考虑引入redux-saga.
 
         // 选中上一个组件
         selectPrevQst: (state: QstListState) => {
