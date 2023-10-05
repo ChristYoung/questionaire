@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid';
 import { QInputProps } from './QInput';
 import { QTitleProps } from './QTitle';
 
@@ -22,11 +23,11 @@ export const QSingleSelectDefaultProps = {
     options: [
         {
             label: '选项1',
-            value: '1',
+            value: nanoid(6),
         },
         {
             label: '选项2',
-            value: '2',
+            value: nanoid(6),
         },
     ],
     direction: 'vertical',

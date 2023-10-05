@@ -5,6 +5,7 @@ import { QSingleSelectDefaultProps } from './DefaultProps';
 import { QSingleSelectProps } from './QSingleSelect';
 import { PlusOutlined, MinusCircleOutlined } from '@ant-design/icons';
 import { Required } from '../../enum/validator-rules.enum';
+import { nanoid } from 'nanoid';
 
 export const QSingleSelectPanel: React.FC<QSingleSelectProps> = (
     props: QSingleSelectProps,
@@ -64,16 +65,7 @@ export const QSingleSelectPanel: React.FC<QSingleSelectProps> = (
                                                         '请输入选项文字',
                                                     ),
                                                 ]}>
-                                                <Input
-                                                    placeholder="输入选项文字"
-                                                    onChange={e => {
-                                                        options?.[_index] &&
-                                                            (options[
-                                                                _index
-                                                            ].label =
-                                                                e.target.value);
-                                                    }}
-                                                />
+                                                <Input placeholder="输入选项文字" />
                                             </Form.Item>
                                             {_index > 1 && (
                                                 <MinusCircleOutlined
@@ -91,7 +83,12 @@ export const QSingleSelectPanel: React.FC<QSingleSelectProps> = (
                                         block
                                         icon={<PlusOutlined />}
                                         onClick={() =>
-                                            add({ label: '', value: '' })
+                                            add({
+                                                label: `选项${
+                                                    options.length + 1
+                                                }`,
+                                                value: nanoid(6),
+                                            })
                                         }>
                                         添加选项
                                     </Button>
