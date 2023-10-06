@@ -7,7 +7,10 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { QuestionnaireInfo } from '../../components/QuestionComponents/types';
 import { useDispatch } from 'react-redux';
-import { changeSelectedId, resetQstList } from '../../store/componentsReducer';
+import {
+    changeSelectedId,
+    resetQstList,
+} from '../../store/componentsReducer/componentsSlice';
 import { LeftPanel } from './LeftPanel';
 import { RightPanel } from './RightPanel';
 import { EditHeader } from './EditHeader';

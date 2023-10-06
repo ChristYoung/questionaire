@@ -12,7 +12,7 @@ import {
     deleteSelectedQst,
     hiddenQst,
     lockOrUnLockQst,
-} from '../../store/componentsReducer';
+} from '../../store/componentsReducer/componentsSlice';
 import { useGetQstList } from '../../hook/useGetQstList';
 import { useDispatch } from 'react-redux';
 import cloneDeep from 'lodash.clonedeep';

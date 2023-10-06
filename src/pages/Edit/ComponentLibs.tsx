@@ -4,7 +4,10 @@ import styles from './ComponentLibs.module.scss';
 import { QstType } from '../../components/QuestionComponents/types';
 import { useDispatch } from 'react-redux';
 import { COMPONENT_GROUP, QstTypeMapping } from '../../enum/constant.enum';
-import { addQst, changeSelectedId } from '../../store/componentsReducer';
+import {
+    addQst,
+    changeSelectedId,
+} from '../../store/componentsReducer/componentsSlice';
 
 const { Title } = Typography;
 

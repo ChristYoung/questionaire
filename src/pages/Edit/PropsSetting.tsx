@@ -1,6 +1,6 @@
 import { QstPropsPanelMapping } from '../../enum/constant.enum';
 import { useGetQstList } from '../../hook/useGetQstList';
-import { changeQstProps } from '../../store/componentsReducer/index';
+import { changeQstProps } from '../../store/componentsReducer/componentsSlice';
 import { useDispatch } from 'react-redux';
 
 export const PropsSetting: React.FC = () => {

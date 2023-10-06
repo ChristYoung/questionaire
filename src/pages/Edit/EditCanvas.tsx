@@ -3,7 +3,7 @@ import { Skeleton } from 'antd';
 import { useGetQstList } from '../../hook/useGetQstList';
 import { QstTypeMapping } from '../../enum/constant.enum';
 import { useDispatch } from 'react-redux';
-import { changeSelectedId } from '../../store/componentsReducer';
+import { changeSelectedId } from '../../store/componentsReducer/componentsSlice';
 import classNames from 'classnames';
 import { Empty } from 'antd';
 import { useShortCutKeyPress } from '../../hook/useShortCutKeyPress';

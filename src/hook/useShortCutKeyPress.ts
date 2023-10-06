@@ -4,7 +4,7 @@ import {
     deleteSelectedQst,
     selectNextQst,
     selectPrevQst,
-} from '../store/componentsReducer';
+} from '../store/componentsReducer/componentsSlice';
 
 // 为了防止在右侧属性编辑框中输入时也触发快捷键, 需要判断是否在输入框中
 export const isActiveElementValid = () => {
