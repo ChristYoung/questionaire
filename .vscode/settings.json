@@ -8,6 +8,9 @@
     "clonedeep",
     "downarrow",
     "immer",
+    "Todolist",
+    "todos",
+    "Todosaga",
     "uparrow"
   ],
   "commentTranslate.hover.enabled": false,
