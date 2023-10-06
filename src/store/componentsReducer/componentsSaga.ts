@@ -1,9 +1,26 @@
-import { all, call, put, takeEvery } from 'redux-saga/effects';
+import { debounce, fork, put, takeEvery } from 'redux-saga/effects';
+import { QuestionListItem } from '../../components/QuestionComponents/types';
+import { addQst, changeSelectedId } from './componentsSlice';
+import { PayloadAction, createAction } from '@reduxjs/toolkit';
 
-export const ADD_QST = 'ADD_QST';
+export const COMPONENTS_SAGA = {
+    ADD_OR_COPY_QST: 'ADD_OR_COPY_QST',
+};
 
-export function* componentsSaga() {
-    yield all([]);
+export const addOrCopyQuestion = createAction(
+    COMPONENTS_SAGA.ADD_OR_COPY_QST,
+    (q: QuestionListItem) => ({
+        payload: q,
+    }),
+);
+
+export function* addOrCopyQuestionSaga(
+    action: PayloadAction<QuestionListItem>,
+) {
+    yield put(addQst(action.payload));
+    yield put(changeSelectedId(action.payload.id));
 }
 
-export function* rootSaga() {}
+export function* watchAddOrCopyQuestion() {
+    yield takeEvery(COMPONENTS_SAGA.ADD_OR_COPY_QST, addOrCopyQuestionSaga);
+}
