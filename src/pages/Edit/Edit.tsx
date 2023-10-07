@@ -11,6 +11,7 @@ import {
     changeSelectedId,
     resetQstList,
 } from '../../store/componentsReducer/componentsSlice';
+import { resetQuestionnaireInfo } from '../../store/questionnaireInfoReducer/questionnaireInfoSlice';
 import { LeftPanel } from './LeftPanel';
 import { RightPanel } from './RightPanel';
 import { EditHeader } from './EditHeader';
@@ -40,8 +41,18 @@ export const Edit: React.FC<EditProps> = (props: EditProps) => {
 
     useEffect(() => {
         if (questionnaireInfo) {
-            const { name, questions } = questionnaireInfo;
+            const { questions, style, script, description, name, id } =
+                questionnaireInfo;
             dispatch(resetQstList({ questions }));
+            dispatch(
+                resetQuestionnaireInfo({
+                    style,
+                    script,
+                    description,
+                    name,
+                    id,
+                }),
+            );
         }
     }, [questionnaireInfo]);
 

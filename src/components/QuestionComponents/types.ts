@@ -9,8 +9,6 @@ export type QstType = keyof typeof QstTypeMapping;
 export interface QstBaseProps {
     isHidden?: boolean;
     disabled?: boolean;
-    style?: React.CSSProperties;
-    script?: string;
 }
 
 export interface QuestionListItem {
@@ -31,7 +29,10 @@ export interface OptItem {
 export interface QuestionnaireInfo {
     name: string;
     description?: string;
-    questions: QuestionListItem[];
+    id: string;
+    questions?: QuestionListItem[];
+    style?: React.CSSProperties;
+    script?: string;
 }
 
 export interface QstGroup {

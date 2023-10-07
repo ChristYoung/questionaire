@@ -1,21 +1,19 @@
 // 存储组件列表的数据
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import produce from 'immer';
 import { QuestionListItem } from '../../components/QuestionComponents/types';
 import { deleteItemFromArray, insertItemToArray, moveNext } from '../../utils';
-import produce from 'immer';
 import { QstListStateType } from '..';
 
 export type QstListState = {
     questions?: QuestionListItem[];
     selectedId?: string; // 被点击选中的组件id
-    copiedComponent?: QuestionListItem; // 被复制的组件
     selectedComponent?: QuestionListItem; // 被点击选中的组件
 };
 
 export const INIT_STATE: QstListState = {
     selectedId: '',
     selectedComponent: undefined,
-    copiedComponent: undefined,
     questions: [],
 };
 
