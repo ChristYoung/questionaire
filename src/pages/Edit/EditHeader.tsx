@@ -5,14 +5,14 @@ import { useNavigate } from 'react-router-dom';
 import { ToolBar } from './ToolBar';
 import { QuestionTitle } from './QuestionTitle';
 import useRequest from '../../hook/useRequest';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { getQstListSelector } from '../../store/componentsReducer/componentsSlice';
 import { questionnaireInfoSelector } from '../../store/questionnaireInfoReducer/questionnaireInfoSlice';
 import { QuestionnaireInfo } from '../../components/QuestionComponents/types';
 import { ApiEnum } from '../../enum/api.enum';
 import { LoadingOutlined } from '@ant-design/icons';
-import { useState } from 'react';
-import { useKeyPress } from 'ahooks';
+import { useEffect, useState } from 'react';
+import { useKeyPress, useDebounceEffect } from 'ahooks';
 
 export interface EditHeaderProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -44,6 +44,15 @@ export const EditHeader: React.FC<EditHeaderProps> = (
             onSave();
         }
     });
+
+    useDebounceEffect(
+        () => {
+            onSave();
+        },
+        [name, description, script, style, questions],
+        { wait: 500 },
+    );
+
     return (
         <div className={styles['__EditHeader']}>
             <div className={styles.header}>
