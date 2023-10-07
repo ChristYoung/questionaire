@@ -31,7 +31,7 @@ export const Edit: React.FC<EditProps> = (props: EditProps) => {
         const _data = await useRequest<QuestionnaireInfo>({
             url: `${ApiEnum.QuestionnaireDetail}/${id}`,
         });
-        setQuestionnaireInfo(_data);
+        setQuestionnaireInfo(_data['data']);
         setLoading(false);
     };
 

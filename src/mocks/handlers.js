@@ -12,6 +12,21 @@ export const handlers = [
     // 根据id获取问卷中的问题列表
     rest.get(`*/${ApiEnum.QuestionnaireDetail}/:id`, (req, res, ctx) => {
         const randomDelay = DELAY_TIME_RANDOM[ getRandomInt(0, DELAY_TIME_RANDOM.length - 1) ];
-        return res(ctx.status(200), ctx.delay(randomDelay), ctx.json(MOCK_QST_DETAIL));
+        const dataFromSession = sessionStorage.getItem('mock__questionnaireInfo') ? JSON.parse(sessionStorage.getItem('mock__questionnaireInfo')) : MOCK_QST_DETAIL;
+        console.log('dataFromSession', dataFromSession)
+        return res(ctx.status(200), ctx.delay(randomDelay), ctx.json({
+            status: 'success',
+            data: dataFromSession
+        }));
     }),
+
+    // 保存问卷
+    rest.post(`*/${ApiEnum.SaveQuestionnaire}`, async (req, res, ctx) => {
+        const reqBody = await req.json();
+        sessionStorage.setItem('mock__questionnaireInfo', JSON.stringify(reqBody));
+        return res(ctx.status(200), ctx.delay(1000), ctx.json({
+            status: 'success',
+            data: null
+        }));
+    })
 ];

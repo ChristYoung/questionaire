@@ -7,7 +7,7 @@ import { nanoid } from 'nanoid';
 export const MOCK_QST_DETAIL: QuestionnaireInfo = {
     name: '测试问卷1',
     description: '测试问卷1描述$$$$$$',
-    id: nanoid(14),
+    id: 'Xx6nlUfI97gcV1',
     questions: [
         {
             id: nanoid(36),

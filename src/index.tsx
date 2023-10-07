@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
@@ -7,7 +6,6 @@ import { Provider } from 'react-redux';
 import store from './store';
 import { worker } from './mocks/browser';
 
-console.log('process.env.NODE_ENV', process.env.NODE_ENV);
 if (process.env.NODE_ENV === 'development') {
     worker.start();
 }

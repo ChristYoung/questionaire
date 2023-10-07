@@ -3,4 +3,5 @@ export const ApiEnum = {
     QuestionnaireList: 'questionnaireList',
     QuestionnaireCreate: 'questionnaireCreate',
     QuestionnaireEdit: 'questionnaireEdit',
+    SaveQuestionnaire: 'saveQuestionnaire',
 } as const;

@@ -4,6 +4,14 @@ import { LeftOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { ToolBar } from './ToolBar';
 import { QuestionTitle } from './QuestionTitle';
+import useRequest from '../../hook/useRequest';
+import { useSelector, useDispatch } from 'react-redux';
+import { getQstListSelector } from '../../store/componentsReducer/componentsSlice';
+import { questionnaireInfoSelector } from '../../store/questionnaireInfoReducer/questionnaireInfoSlice';
+import { QuestionnaireInfo } from '../../components/QuestionComponents/types';
+import { ApiEnum } from '../../enum/api.enum';
+import { LoadingOutlined } from '@ant-design/icons';
+import { useState } from 'react';
 
 export interface EditHeaderProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -13,6 +21,20 @@ export const EditHeader: React.FC<EditHeaderProps> = (
     props: EditHeaderProps,
 ) => {
     const nav = useNavigate();
+    const [loading, setLoading] = useState(false);
+    const { questions } = useSelector(getQstListSelector);
+    const { name, description, script, style, id } = useSelector(
+        questionnaireInfoSelector,
+    );
+    const onSave = async () => {
+        setLoading(true);
+        await useRequest<QuestionnaireInfo>({
+            method: 'POST',
+            url: `${ApiEnum.SaveQuestionnaire}/`,
+            data: { name, description, script, style, id, questions },
+        });
+        setLoading(false);
+    };
     return (
         <div className={styles['__EditHeader']}>
             <div className={styles.header}>
@@ -32,7 +54,13 @@ export const EditHeader: React.FC<EditHeaderProps> = (
                 </div>
                 <div className={styles.right}>
                     <Space>
-                        <Button type="primary">保存</Button>
+                        <Button
+                            type="primary"
+                            disabled={loading}
+                            icon={loading ? <LoadingOutlined /> : null}
+                            onClick={onSave}>
+                            保存
+                        </Button>
                         <Button>发布</Button>
                     </Space>
                 </div>
