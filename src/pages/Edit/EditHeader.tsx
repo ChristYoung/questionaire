@@ -3,6 +3,7 @@ import { Button, Typography, Space } from 'antd';
 import { LeftOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { ToolBar } from './ToolBar';
+import { QuestionTitle } from './QuestionTitle';
 
 export interface EditHeaderProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -23,11 +24,7 @@ export const EditHeader: React.FC<EditHeaderProps> = (
                             icon={<LeftOutlined />}>
                             返回
                         </Button>
-                        <Title
-                            level={5}
-                            style={{ marginBottom: 0 }}>
-                            编辑问卷
-                        </Title>
+                        <QuestionTitle />
                     </Space>
                 </div>
                 <div className={styles.main}>

@@ -16,15 +16,26 @@ export const questionnaireInfoSelector = (state: QuestionnaireInfoStateType) =>
     state.questionnaireInfo as QuestionnaireInfo;
 
 export const questionnaireInfoSlice = createSlice({
-    name: 'questionnaireInfo',
+    name: 'questionnaire',
     initialState: INIT_STATE,
     reducers: {
         resetQuestionnaireInfo: (
             state: QuestionnaireInfo,
             action: PayloadAction<QuestionnaireInfo>,
-        ) => action.payload,
+        ) => {
+            return action.payload;
+        },
+
+        changeQuestionnaireName: produce(
+            (draft: QuestionnaireInfo, action: PayloadAction<string>) => {
+                if (action.payload) {
+                    draft.name = action.payload;
+                }
+            },
+        ),
     },
 });
 
-export const { resetQuestionnaireInfo } = questionnaireInfoSlice.actions;
+export const { resetQuestionnaireInfo, changeQuestionnaireName } =
+    questionnaireInfoSlice.actions;
 export default questionnaireInfoSlice.reducer;
