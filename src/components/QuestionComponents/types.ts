@@ -31,7 +31,7 @@ export interface QuestionnaireInfo {
     description?: string;
     id: string;
     questions?: QuestionListItem[];
-    style?: React.CSSProperties;
+    style?: string;
     script?: string;
 }
 

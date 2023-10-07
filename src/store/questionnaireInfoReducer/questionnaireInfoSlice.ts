@@ -8,19 +8,17 @@ const INIT_STATE: QuestionnaireInfo = {
     id: '',
 };
 
+export type QuestionnaireInfoStateType = {
+    questionnaireInfo: QuestionnaireInfo;
+};
+
+export const questionnaireInfoSelector = (state: QuestionnaireInfoStateType) =>
+    state.questionnaireInfo as QuestionnaireInfo;
+
 export const questionnaireInfoSlice = createSlice({
     name: 'questionnaireInfo',
     initialState: INIT_STATE,
     reducers: {
-        setQuestionnaireInfo: (
-            state,
-            action: PayloadAction<QuestionnaireInfo>,
-        ) => {
-            return produce(state, draft => {
-                draft.name = action.payload.name;
-                draft.description = action.payload.description;
-            });
-        },
         resetQuestionnaireInfo: (
             state: QuestionnaireInfo,
             action: PayloadAction<QuestionnaireInfo>,
@@ -28,6 +26,5 @@ export const questionnaireInfoSlice = createSlice({
     },
 });
 
-export const { setQuestionnaireInfo, resetQuestionnaireInfo } =
-    questionnaireInfoSlice.actions;
+export const { resetQuestionnaireInfo } = questionnaireInfoSlice.actions;
 export default questionnaireInfoSlice.reducer;
