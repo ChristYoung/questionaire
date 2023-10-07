@@ -1,7 +1,7 @@
-import { debounce, fork, put, takeEvery } from 'redux-saga/effects';
+import { PayloadAction, createAction } from '@reduxjs/toolkit';
+import { put, takeEvery } from 'redux-saga/effects';
 import { QuestionListItem } from '../../components/QuestionComponents/types';
 import { addQst, changeSelectedId } from './componentsSlice';
-import { PayloadAction, createAction } from '@reduxjs/toolkit';
 
 export const COMPONENTS_SAGA = {
     ADD_OR_COPY_QST: 'ADD_OR_COPY_QST',
@@ -21,6 +21,6 @@ export function* addOrCopyQuestionSaga(
     yield put(changeSelectedId(action.payload.id));
 }
 
-export function* watchAddOrCopyQuestion() {
+export function* watchComponentsSaga() {
     yield takeEvery(COMPONENTS_SAGA.ADD_OR_COPY_QST, addOrCopyQuestionSaga);
 }

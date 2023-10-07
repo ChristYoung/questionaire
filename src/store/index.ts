@@ -5,7 +5,7 @@ import qstListReducer, {
 } from './componentsReducer/componentsSlice';
 import todoListReducer, { TodoState } from '../components/TodoList/todo-slice';
 import { fork } from 'redux-saga/effects';
-import { watchAddOrCopyQuestion } from './componentsReducer/componentsSaga';
+import { watchComponentsSaga } from './componentsReducer/componentsSaga';
 import todoSaga from '../components/TodoList/todo-saga';
 
 const sagaMiddleware = createSagaMiddleware();
@@ -13,7 +13,7 @@ export type QstListStateType = { qstList: QstListState };
 export type TodoStateType = { todoList: TodoState };
 
 export function* rootSaga() {
-    yield fork(watchAddOrCopyQuestion);
+    yield fork(watchComponentsSaga);
     yield fork(todoSaga);
 }
 

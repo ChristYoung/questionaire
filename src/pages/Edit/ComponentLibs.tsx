@@ -4,18 +4,22 @@ import { QstType } from '../../components/QuestionComponents/types';
 import { COMPONENT_GROUP, QstTypeMapping } from '../../enum/constant.enum';
 import { addOrCopyQuestion } from '../../store/componentsReducer/componentsSaga';
 import styles from './ComponentLibs.module.scss';
+import { useDispatch } from 'react-redux';
 
 const { Title } = Typography;
 
 export const ComponentLibs: React.FC = () => {
+    const dispatch = useDispatch();
     const handleClick = (e: React.MouseEvent, qstType: QstType) => {
         e.stopPropagation();
         const newId = nanoid(36);
-        addOrCopyQuestion({
-            id: newId,
-            qstType,
-            propsObj: { isHidden: false },
-        });
+        dispatch(
+            addOrCopyQuestion({
+                id: newId,
+                qstType,
+                propsObj: { isHidden: false },
+            }),
+        );
     };
 
     return (

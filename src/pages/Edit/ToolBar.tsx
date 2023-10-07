@@ -7,8 +7,6 @@ import {
     UnlockOutlined,
 } from '@ant-design/icons';
 import {
-    addQst,
-    changeSelectedId,
     deleteSelectedQst,
     hiddenQst,
     lockOrUnLockQst,
@@ -17,6 +15,7 @@ import { useGetQstList } from '../../hook/useGetQstList';
 import { useDispatch } from 'react-redux';
 import cloneDeep from 'lodash.clonedeep';
 import { nanoid } from 'nanoid';
+import { addOrCopyQuestion } from '../../store/componentsReducer/componentsSaga';
 
 export interface ToolBarProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -70,8 +69,7 @@ export const ToolBar: React.FC<ToolBarProps> = (props: ToolBarProps) => {
                         onClick={() => {
                             const newQst = cloneDeep(selectedComponent);
                             newQst.id = nanoid(36);
-                            dispatch(addQst(newQst));
-                            dispatch(changeSelectedId(newQst.id));
+                            dispatch(addOrCopyQuestion(newQst));
                         }}
                         disabled={questions?.length < 1 || !selectedId}
                         icon={<CopyOutlined></CopyOutlined>}></Button>
