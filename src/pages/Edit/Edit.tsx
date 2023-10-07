@@ -41,7 +41,7 @@ export const Edit: React.FC<EditProps> = (props: EditProps) => {
 
     useEffect(() => {
         if (questionnaireInfo) {
-            const { questions, style, script, description, name, id } =
+            const { questions, style, script, description, name, id, status } =
                 questionnaireInfo;
             dispatch(resetQstList({ questions }));
             dispatch(
@@ -51,6 +51,7 @@ export const Edit: React.FC<EditProps> = (props: EditProps) => {
                     description,
                     name,
                     id,
+                    status,
                 }),
             );
         }

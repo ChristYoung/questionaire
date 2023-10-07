@@ -33,6 +33,7 @@ export interface QuestionnaireInfo {
     questions?: QuestionListItem[];
     style?: string;
     script?: string;
+    status?: 'PUB' | 'DRAFT';
 }
 
 export interface QstGroup {

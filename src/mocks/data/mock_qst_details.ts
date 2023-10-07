@@ -8,6 +8,7 @@ export const MOCK_QST_DETAIL: QuestionnaireInfo = {
     name: '测试问卷1',
     description: '测试问卷1描述$$$$$$',
     id: 'Xx6nlUfI97gcV1',
+    status: 'DRAFT',
     questions: [
         {
             id: nanoid(36),

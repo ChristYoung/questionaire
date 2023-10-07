@@ -1,30 +1,23 @@
-import styles from './EditHeader.module.scss';
-import { Button, Typography, Space } from 'antd';
-import { LeftOutlined } from '@ant-design/icons';
-import { useNavigate } from 'react-router-dom';
-import { ToolBar } from './ToolBar';
-import { QuestionTitle } from './QuestionTitle';
-import useRequest from '../../hook/useRequest';
+import { LeftOutlined, LoadingOutlined } from '@ant-design/icons';
+import { useDebounceEffect, useKeyPress } from 'ahooks';
+import { Button, Space } from 'antd';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { getQstListSelector } from '../../store/componentsReducer/componentsSlice';
-import { questionnaireInfoSelector } from '../../store/questionnaireInfoReducer/questionnaireInfoSlice';
+import { useNavigate } from 'react-router-dom';
 import { QuestionnaireInfo } from '../../components/QuestionComponents/types';
 import { ApiEnum } from '../../enum/api.enum';
-import { LoadingOutlined } from '@ant-design/icons';
-import { useEffect, useState } from 'react';
-import { useKeyPress, useDebounceEffect } from 'ahooks';
+import useRequest from '../../hook/useRequest';
+import { getQstListSelector } from '../../store/componentsReducer/componentsSlice';
+import { questionnaireInfoSelector } from '../../store/questionnaireInfoReducer/questionnaireInfoSlice';
+import styles from './EditHeader.module.scss';
+import { QuestionTitle } from './QuestionTitle';
+import { ToolBar } from './ToolBar';
 
-export interface EditHeaderProps extends React.HTMLAttributes<HTMLDivElement> {}
-
-const { Title } = Typography;
-
-export const EditHeader: React.FC<EditHeaderProps> = (
-    props: EditHeaderProps,
-) => {
+export const EditHeader: React.FC = () => {
     const nav = useNavigate();
     const [loading, setLoading] = useState(false);
     const { questions } = useSelector(getQstListSelector);
-    const { name, description, script, style, id } = useSelector(
+    const { name, description, script, style, id, status } = useSelector(
         questionnaireInfoSelector,
     );
 
@@ -33,7 +26,7 @@ export const EditHeader: React.FC<EditHeaderProps> = (
         await useRequest<QuestionnaireInfo>({
             method: 'POST',
             url: `${ApiEnum.SaveQuestionnaire}/`,
-            data: { name, description, script, style, id, questions },
+            data: { name, description, script, style, id, questions, status },
         });
         setLoading(false);
     };
@@ -44,6 +37,24 @@ export const EditHeader: React.FC<EditHeaderProps> = (
             onSave();
         }
     });
+
+    const onPublish = async () => {
+        setLoading(true);
+        await useRequest<QuestionnaireInfo>({
+            method: 'POST',
+            url: `${ApiEnum.SaveQuestionnaire}/`,
+            data: {
+                name,
+                description,
+                script,
+                style,
+                id,
+                questions,
+                status: 'PUB',
+            },
+        });
+        setLoading(false);
+    };
 
     useDebounceEffect(
         () => {
@@ -79,7 +90,11 @@ export const EditHeader: React.FC<EditHeaderProps> = (
                             onClick={onSave}>
                             保存
                         </Button>
-                        <Button>发布</Button>
+                        <Button
+                            onClick={onPublish}
+                            disabled={status === 'PUB'}>
+                            发布
+                        </Button>
                     </Space>
                 </div>
             </div>

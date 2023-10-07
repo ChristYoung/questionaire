@@ -1,22 +1,19 @@
-import { Button, Space, Tooltip } from 'antd';
 import {
+    CopyOutlined,
     DeleteOutlined,
     EyeInvisibleOutlined,
-    CopyOutlined,
     LockOutlined,
     UnlockOutlined,
 } from '@ant-design/icons';
+import { Button, Space, Tooltip } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { copyQstAction } from '../../store/componentsReducer/componentsSaga';
 import {
     deleteSelectedQst,
     getQstListSelector,
     hiddenQst,
     lockOrUnLockQst,
 } from '../../store/componentsReducer/componentsSlice';
-import { useGetQstList } from '../../hook/useGetQstList';
-import { useDispatch, useSelector } from 'react-redux';
-import cloneDeep from 'lodash.clonedeep';
-import { nanoid } from 'nanoid';
-import { copyQstAction } from '../../store/componentsReducer/componentsSaga';
 
 export interface ToolBarProps extends React.HTMLAttributes<HTMLDivElement> {}
 
