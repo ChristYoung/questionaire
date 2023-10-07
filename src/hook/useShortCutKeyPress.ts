@@ -5,6 +5,10 @@ import {
     selectNextQst,
     selectPrevQst,
 } from '../store/componentsReducer/componentsSlice';
+import { useGetQstList } from './useGetQstList';
+import cloneDeep from 'lodash.clonedeep';
+import { nanoid } from 'nanoid';
+import { addOrCopyQuestion } from '../store/componentsReducer/componentsSaga';
 
 // 为了防止在右侧属性编辑框中输入时也触发快捷键, 需要判断是否在输入框中
 export const isActiveElementValid = () => {
@@ -22,8 +26,9 @@ export const useShortCutKeyPress = () => {
         }
     });
 
-    // TODO: 考虑引入redux-saga, 在这里调用addQst这个action, 复制快捷键
-    useKeyPress(['ctrl.v', 'command.v'], () => {});
+    useKeyPress(['command'], e => {
+        console.log('e', e);
+    });
 
     // 快速上移和下移选中组件
     useKeyPress(['uparrow'], () => {
