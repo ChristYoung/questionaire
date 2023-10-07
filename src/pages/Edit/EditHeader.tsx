@@ -12,6 +12,7 @@ import { QuestionnaireInfo } from '../../components/QuestionComponents/types';
 import { ApiEnum } from '../../enum/api.enum';
 import { LoadingOutlined } from '@ant-design/icons';
 import { useState } from 'react';
+import { useKeyPress } from 'ahooks';
 
 export interface EditHeaderProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -26,6 +27,7 @@ export const EditHeader: React.FC<EditHeaderProps> = (
     const { name, description, script, style, id } = useSelector(
         questionnaireInfoSelector,
     );
+
     const onSave = async () => {
         setLoading(true);
         await useRequest<QuestionnaireInfo>({
@@ -35,6 +37,13 @@ export const EditHeader: React.FC<EditHeaderProps> = (
         });
         setLoading(false);
     };
+
+    useKeyPress(['ctrl.s', 'meta.s'], (e: KeyboardEvent) => {
+        e.preventDefault();
+        if (!loading) {
+            onSave();
+        }
+    });
     return (
         <div className={styles['__EditHeader']}>
             <div className={styles.header}>

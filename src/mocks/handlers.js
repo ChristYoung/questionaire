@@ -13,7 +13,6 @@ export const handlers = [
     rest.get(`*/${ApiEnum.QuestionnaireDetail}/:id`, (req, res, ctx) => {
         const randomDelay = DELAY_TIME_RANDOM[ getRandomInt(0, DELAY_TIME_RANDOM.length - 1) ];
         const dataFromSession = sessionStorage.getItem('mock__questionnaireInfo') ? JSON.parse(sessionStorage.getItem('mock__questionnaireInfo')) : MOCK_QST_DETAIL;
-        console.log('dataFromSession', dataFromSession)
         return res(ctx.status(200), ctx.delay(randomDelay), ctx.json({
             status: 'success',
             data: dataFromSession

@@ -41,9 +41,14 @@ export function* copyQstSaga() {
         getQstListSelector,
     ) as QstListState;
     const newQst = cloneDeep(selectedComponent);
-    newQst.id = nanoid(36);
-    yield put(addQst(newQst));
-    yield put(changeSelectedId(newQst.id));
+    const { selectedId } = yield select(getQstListSelector) as QstListState;
+    if (selectedId) {
+        newQst.id = nanoid(36);
+        yield put(addQst(newQst));
+        yield put(changeSelectedId(newQst.id));
+    } else {
+        yield put(null);
+    }
 }
 
 export function* moveSelectedIndexSaga(action: PayloadAction<'next' | 'prev'>) {

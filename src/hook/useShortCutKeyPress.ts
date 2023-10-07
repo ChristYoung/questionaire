@@ -1,6 +1,9 @@
 import { useKeyPress } from 'ahooks';
 import { useDispatch } from 'react-redux';
-import { moveSelectedIndexAction } from '../store/componentsReducer/componentsSaga';
+import {
+    copyQstAction,
+    moveSelectedIndexAction,
+} from '../store/componentsReducer/componentsSaga';
 import { deleteSelectedQst } from '../store/componentsReducer/componentsSlice';
 
 // 为了防止在右侧属性编辑框中输入时也触发快捷键, 需要判断是否在输入框中
@@ -19,10 +22,8 @@ export const useShortCutKeyPress = () => {
         }
     });
 
-    // Not work
-    // TODO: confirm mac the keycode of `command`.
-    useKeyPress(['MetaLeft'], e => {
-        console.log('e', e);
+    useKeyPress(['meta.v'], () => {
+        dispatch(copyQstAction());
     });
 
     // 快速上移和下移选中组件

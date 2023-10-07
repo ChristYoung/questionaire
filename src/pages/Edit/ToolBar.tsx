@@ -69,9 +69,7 @@ export const ToolBar: React.FC<ToolBarProps> = (props: ToolBarProps) => {
                     <Button
                         shape="circle"
                         onClick={() => {
-                            if (selectedId) {
-                                dispatch(copyQstAction());
-                            }
+                            dispatch(copyQstAction());
                         }}
                         disabled={questions?.length < 1 || !selectedId}
                         icon={<CopyOutlined></CopyOutlined>}></Button>
