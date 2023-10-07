@@ -1,13 +1,7 @@
 import { useKeyPress } from 'ahooks';
 import { useDispatch } from 'react-redux';
-import {
-    deleteSelectedQst,
-    selectNextQst,
-    selectPrevQst,
-} from '../store/componentsReducer/componentsSlice';
-import { useGetQstList } from './useGetQstList';
-import cloneDeep from 'lodash.clonedeep';
-import { nanoid } from 'nanoid';
+import { moveSelectedIndexAction } from '../store/componentsReducer/componentsSaga';
+import { deleteSelectedQst } from '../store/componentsReducer/componentsSlice';
 
 // 为了防止在右侧属性编辑框中输入时也触发快捷键, 需要判断是否在输入框中
 export const isActiveElementValid = () => {
@@ -25,20 +19,22 @@ export const useShortCutKeyPress = () => {
         }
     });
 
-    useKeyPress(['command'], e => {
+    // Not work
+    // TODO: confirm mac the keycode of `command`.
+    useKeyPress(['MetaLeft'], e => {
         console.log('e', e);
     });
 
     // 快速上移和下移选中组件
     useKeyPress(['uparrow'], () => {
         if (isActiveElementValid()) {
-            dispatch(selectPrevQst());
+            dispatch(moveSelectedIndexAction('prev'));
         }
     });
 
     useKeyPress(['downarrow'], () => {
         if (isActiveElementValid()) {
-            dispatch(selectNextQst());
+            dispatch(moveSelectedIndexAction('next'));
         }
     });
 };
