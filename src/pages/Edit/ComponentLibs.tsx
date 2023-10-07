@@ -2,9 +2,9 @@ import { nanoid } from '@reduxjs/toolkit';
 import { Typography } from 'antd';
 import { QstType } from '../../components/QuestionComponents/types';
 import { COMPONENT_GROUP, QstTypeMapping } from '../../enum/constant.enum';
-import { addOrCopyQuestion } from '../../store/componentsReducer/componentsSaga';
 import styles from './ComponentLibs.module.scss';
 import { useDispatch } from 'react-redux';
+import { addQstAction } from '../../store/componentsReducer/componentsSaga';
 
 const { Title } = Typography;
 
@@ -14,7 +14,7 @@ export const ComponentLibs: React.FC = () => {
         e.stopPropagation();
         const newId = nanoid(36);
         dispatch(
-            addOrCopyQuestion({
+            addQstAction({
                 id: newId,
                 qstType,
                 propsObj: { isHidden: false },

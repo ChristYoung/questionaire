@@ -3,6 +3,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { QuestionListItem } from '../../components/QuestionComponents/types';
 import { deleteItemFromArray, insertItemToArray, moveNext } from '../../utils';
 import produce from 'immer';
+import { QstListStateType } from '..';
 
 export type QstListState = {
     questions?: QuestionListItem[];
@@ -40,6 +41,9 @@ export function addComponent(
         };
     }
 }
+
+// selector
+export const getQstListSelector = (state: QstListStateType) => state.qstList;
 
 export const qstListSlice = createSlice({
     name: 'qstList',

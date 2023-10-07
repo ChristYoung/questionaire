@@ -8,7 +8,6 @@ import {
 import { useGetQstList } from './useGetQstList';
 import cloneDeep from 'lodash.clonedeep';
 import { nanoid } from 'nanoid';
-import { addOrCopyQuestion } from '../store/componentsReducer/componentsSaga';
 
 // 为了防止在右侧属性编辑框中输入时也触发快捷键, 需要判断是否在输入框中
 export const isActiveElementValid = () => {

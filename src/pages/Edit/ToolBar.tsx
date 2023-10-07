@@ -8,20 +8,22 @@ import {
 } from '@ant-design/icons';
 import {
     deleteSelectedQst,
+    getQstListSelector,
     hiddenQst,
     lockOrUnLockQst,
 } from '../../store/componentsReducer/componentsSlice';
 import { useGetQstList } from '../../hook/useGetQstList';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import cloneDeep from 'lodash.clonedeep';
 import { nanoid } from 'nanoid';
-import { addOrCopyQuestion } from '../../store/componentsReducer/componentsSaga';
+import { copyQstAction } from '../../store/componentsReducer/componentsSaga';
 
 export interface ToolBarProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export const ToolBar: React.FC<ToolBarProps> = (props: ToolBarProps) => {
     const dispatch = useDispatch();
-    const { questions, selectedId, selectedComponent } = useGetQstList();
+    const { questions, selectedId, selectedComponent } =
+        useSelector(getQstListSelector);
     const isLocked = !!selectedComponent?.propsObj?.disabled;
 
     return (
@@ -67,9 +69,9 @@ export const ToolBar: React.FC<ToolBarProps> = (props: ToolBarProps) => {
                     <Button
                         shape="circle"
                         onClick={() => {
-                            const newQst = cloneDeep(selectedComponent);
-                            newQst.id = nanoid(36);
-                            dispatch(addOrCopyQuestion(newQst));
+                            if (selectedId) {
+                                dispatch(copyQstAction());
+                            }
                         }}
                         disabled={questions?.length < 1 || !selectedId}
                         icon={<CopyOutlined></CopyOutlined>}></Button>
