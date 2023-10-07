@@ -25,11 +25,13 @@ export const todoSlice = createSlice({
                 text: action.payload.text,
                 completed: false,
             });
+            return { ...state };
         },
         deleteTodo: (state, action) => {
-            state.todos = state.todos.filter(
+            const filteredTodos = state.todos.filter(
                 todo => todo.id !== action.payload.id,
             );
+            return { ...state, todos: filteredTodos };
         },
         updateTodo: (state, action) => {
             const todo = state.todos.find(

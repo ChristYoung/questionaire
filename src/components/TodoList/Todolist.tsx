@@ -7,6 +7,7 @@ import {
     updateTodoActions,
     fetchTodosActions,
 } from './todo-saga';
+import { TodoStateType } from '../../store';
 
 export interface TodolistProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -15,7 +16,9 @@ export const Todolist: React.FC<TodolistProps> = (props: TodolistProps) => {
     const [editingTodoId, setEditingTodoId] = useState<string | null>(null);
     const [editingTodoTitle, setEditingTodoTitle] = useState('');
     const dispatch = useDispatch();
-    const todos = useSelector((state: TodoState) => state.todos);
+    const { todos } = useSelector<TodoStateType>(
+        state => state.todoList,
+    ) as TodoState;
     const handleNewTodoTitleChange = (
         event: React.ChangeEvent<HTMLInputElement>,
     ) => {

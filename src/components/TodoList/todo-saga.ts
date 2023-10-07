@@ -18,9 +18,9 @@ export const SET_TODOS = 'SET_TODOS';
 
 // saga actions
 export const fetchTodosActions = createAction(FETCH_TODOS);
-export const deleteTodoActions = createAction(DELETE_TODO, (id: string) => ({
-    payload: { id },
-}));
+export const deleteTodoActions = createAction(DELETE_TODO, (id: string) => {
+    return { payload: { id } };
+});
 export const updateTodoActions = createAction(
     UPDATE_TODO,
     (text: string, id) => ({
@@ -42,7 +42,7 @@ function* fetchTodosaga() {
 }
 
 function* deleteTodoSaga(action) {
-    yield put(deleteTodo(action.payload.id));
+    yield put(deleteTodo(action.payload));
 }
 
 function* updateTodoSaga(action) {
