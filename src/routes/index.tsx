@@ -9,7 +9,6 @@ import { Register } from '../pages/Register/Register';
 import { Trash } from '../pages/Trash/Trash';
 import { Edit } from '../pages/Edit/Edit';
 import { Error404 } from '../pages/Error404';
-import { Todolist } from '../components/TodoList/Todolist';
 
 const routerConfig = createBrowserRouter([
     {
@@ -31,10 +30,6 @@ const routerConfig = createBrowserRouter([
         path: 'questionnaire',
         element: <QuestionLayout />,
         children: [{ path: 'edit/:id', element: <Edit /> }],
-    },
-    {
-        path: 'todo',
-        element: <Todolist />,
     },
 ]);
 
